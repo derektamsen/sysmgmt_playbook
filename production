@@ -1,7 +1,5 @@
-[webservers]
-web3
+[desktop]
+desktop
 
-[dbservers]
-web2
-
-
+[mobile]
+derek-thinkpad

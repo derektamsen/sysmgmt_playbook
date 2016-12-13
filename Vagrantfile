@@ -12,6 +12,9 @@ Vagrant.configure(2) do |config|
   # See https://github.com/mitchellh/vagrant/issues/5005
   # config.ssh.insert_key = false
 
+  config.vm.provision "shell",
+    inline: "apt-get update && apt-get install --no-install-recommends --yes python"
+
   config.vm.provision "ansible" do |ansible|
     ansible.verbose = "v"
     ansible.playbook = "site.yml"
