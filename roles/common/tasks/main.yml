@@ -1,2 +1,6 @@
 ---
 # tasks file for common
+- name: install the latest version of htop
+  package:
+    name: htop
+    state: latest
