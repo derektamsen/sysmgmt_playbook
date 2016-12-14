@@ -1,7 +1,50 @@
 ---
 # tasks file for productivity
 
-- name: Install the Inconsolata font
-  package: >
-    name=fonts-inconsolata
-    state=latest
+- name: Import Google Chrome repo gpg key
+  apt_key:
+    id: A040830F7FAC5991
+    url: 'https://dl-ssl.google.com/linux/linux_signing_key.pub'
+    state: present
+
+- name: Add Google Chrome repo
+  apt_repository:
+    repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+    state: present
+    filename: 'google-chrome-beta'
+
+- name: Import syncthing repo gpg key
+  apt_key:
+    id: D26E6ED000654A3E
+    url: 'https://syncthing.net/release-key.txt'
+    state: present
+
+- name: Add syncthing release repo
+  apt_repository:
+    repo: deb https://apt.syncthing.net/ syncthing release
+    state: present
+    filename: 'syncthing'
+
+- name: Import dropbox repo gpg key
+  apt_key:
+    id: FC918B335044912E
+    keyserver: keyserver.ubuntu.com
+    state: present
+
+- name: Add dropbox repo
+  apt_repository:
+    repo: deb http://linux.dropbox.com/ubuntu xenial main
+    state: present
+    filename: 'dropbox'
+
+- name: Install productivity packages
+  package: name={{item}} state=latest
+  with_items:
+  - fonts-inconsolata
+  - weechat
+  - gufw
+  - zsh
+  - vlc
+  - yadm
+  - python-gtk2
+  - google-chrome-beta
