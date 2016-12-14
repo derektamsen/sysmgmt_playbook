@@ -26,15 +26,16 @@ Once done, you can check the results by browsing to http://localhost/index.php.
 You should see a simple test page and a list of databases retrieved from the
 database server.
 
-# Usage
-- Install Ansible
+Usage
+-----
+Install Ansible
 
         sudo apt-get install software-properties-common
         sudo apt-add-repository ppa:ansible/ansible
         sudo apt-get update
         sudo apt-get install ansible git
 
-- Run ansible locally
+Run ansible locally
 
         ansible-pull -U https://github.com/derektamsen/sysmgmt_playbook.git \
           --inventory production \
