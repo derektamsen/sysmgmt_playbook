@@ -6,4 +6,5 @@
   become: true
 
   roles:
+    - windowmanager-i3
     - productivity
