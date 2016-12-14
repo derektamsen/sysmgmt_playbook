@@ -1,0 +1,28 @@
+---
+# tasks file for windowmanager-i3
+
+- name: Import i3 repo gpg key
+  apt_key:
+    id: E3CA1A89941C42E6
+    keyserver: keyserver.ubuntu.com
+    state: present
+
+- name: Add i3 repo
+  apt_repository:
+    repo: deb http://debian.sur5r.net/i3/ {{ ansible_distribution_release }} universe
+    state: present
+    filename: 'i3wm'
+
+- name: Install i3 keyring sur5r
+  apt:
+    name: sur5r-keyring
+    update_cache: true
+
+- name: Install i3 packages and utilities
+  package: name={{item}} state=latest
+  with_items:
+  - i3
+  - xautolock
+  - pulseaudio-utils
+  - xbacklight
+  - gnome-power-manager
