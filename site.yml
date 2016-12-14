@@ -1,7 +1,5 @@
 ---
-# This playbook deploys the whole application stack in this site.
-
-- name: apply common configuration to all nodes
+- name: systems for personal and development work
   hosts: all
   remote_user: root
   become: true
