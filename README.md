@@ -38,6 +38,6 @@ Install Ansible
 Run ansible locally
 
         ansible-pull -U https://github.com/derektamsen/sysmgmt_playbook.git \
-          --ask-become-pass
+          --ask-become-pass \
           --inventory production \
           site.yml
