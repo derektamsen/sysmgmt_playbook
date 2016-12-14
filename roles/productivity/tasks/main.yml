@@ -1,0 +1,7 @@
+---
+# tasks file for productivity
+
+- name: Install the Inconsolata font
+  package: >
+    name=fonts-inconsolata
+    state=latest

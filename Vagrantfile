@@ -7,8 +7,12 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = 'ubuntu/yakkety64'
 
+  config.vm.hostname = 'desktop'
+
   config.vm.provision 'ansible_local' do |ansible|
     ansible.verbose = true
     ansible.playbook = 'site.yml'
+    ansible.limit = 'desktop'
+    ansible.inventory_path = 'production'
   end
 end

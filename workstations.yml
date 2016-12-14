@@ -1,0 +1,9 @@
+---
+- name: systems for personal and development work
+  hosts: workstations
+  connection: local
+  # remote_user: root
+  become: true
+
+  roles:
+    - productivity
