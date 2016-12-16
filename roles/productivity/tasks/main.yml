@@ -3,7 +3,7 @@
 
 - name: Import Google Chrome repo gpg key
   apt_key:
-    id: A040830F7FAC5991
+    id: 4CCA1EAF950CEE4AB83976DCA040830F7FAC5991
     url: 'https://dl-ssl.google.com/linux/linux_signing_key.pub'
     state: present
 
@@ -15,7 +15,7 @@
 
 - name: Import syncthing repo gpg key
   apt_key:
-    id: D26E6ED000654A3E
+    id: 37C84554E7E0A261E4F76E1ED26E6ED000654A3E
     url: 'https://syncthing.net/release-key.txt'
     state: present
 
@@ -27,7 +27,7 @@
 
 - name: Import dropbox repo gpg key
   apt_key:
-    id: FC918B335044912E
+    id: 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
     keyserver: keyserver.ubuntu.com
     state: present
 
