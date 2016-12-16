@@ -1,0 +1,36 @@
+---
+# tasks file for homeconfig
+
+- name: Add account for Derek
+  user:
+    name: derek
+    comment: 'Derek Tamsen,,,'
+    shell: /usr/bin/zsh
+    groups: sudo
+    append: yes
+
+- name: Checkout oh-my-zsh
+  become: yes
+  become_user: derek
+  git:
+    repo: 'https://github.com/robbyrussell/oh-my-zsh.git'
+    dest: /home/derek/.oh-my-zsh
+    update: no
+    depth: 1
+    umask: '0022'
+
+- name: Create yadm config dir
+  file:
+    path: /home/derek/.yadm
+    state: directory
+    owner: derek
+    group: derek
+    mode: 0755
+
+- name: Copy yadm config to /home/derek/.yadm/config
+  copy:
+    src: "{{ role_path }}/files/yadm_config"
+    dest: /home/derek/.yadm/config
+    owner: derek
+    group: derek
+    mode: 0644
