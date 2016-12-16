@@ -38,7 +38,7 @@
     filename: 'dropbox'
 
 - name: Install productivity packages
-  package: name={{item}} state=latest
+  package: name={{ item }} state=latest
   with_items:
   - fonts-inconsolata
   - weechat

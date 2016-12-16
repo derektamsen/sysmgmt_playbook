@@ -19,7 +19,7 @@
     update_cache: true
 
 - name: Install i3 packages and utilities
-  package: name={{item}} state=latest
+  package: name={{ item }} state=latest
   with_items:
   - i3
   - xautolock

@@ -1,6 +1,8 @@
 ---
 - name: systems for personal and development work
-  hosts: workstations
+  hosts:
+    - workstations
+    - laptops
   connection: local
   # remote_user: root
   become: true
@@ -8,3 +10,4 @@
   roles:
     - windowmanager-i3
     - productivity
+    - development
