@@ -1,0 +1,12 @@
+---
+# tasks file for ansible
+
+- name: Install ansible repo
+  apt_repository:
+    repo: 'ppa:ansible/ansible'
+
+- name: Install ansible packages
+  package: name={{ item }} state=latest
+  with_items:
+    - software-properties-common
+    - ansible

@@ -8,6 +8,7 @@
   become: true
 
   roles:
+    - ansible
     - security
     - windowmanager-i3
     - productivity
