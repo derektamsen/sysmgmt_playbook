@@ -3,7 +3,7 @@
 
 - name: Import i3 repo gpg key
   apt_key:
-    id: E3CA1A89941C42E6
+    id: BFD90F4DAAEFA72B67BBAF48E3CA1A89941C42E6
     keyserver: keyserver.ubuntu.com
     state: present
 
