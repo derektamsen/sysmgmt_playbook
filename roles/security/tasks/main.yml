@@ -1,0 +1,43 @@
+---
+# tasks file for security
+
+- name: Install yubico repo
+  apt_repository:
+    repo: 'ppa:yubico/stable'
+
+- name: Install keybase from https://keybase.io
+  apt:
+    deb: 'https://prerelease.keybase.io/keybase_amd64.deb'
+
+- name: Add tor repo gpg key
+  apt_key:
+    id: A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
+    keyserver: keys.gnupg.net
+
+- name: Install tor repo
+  apt_repository:
+    repo: deb http://deb.torproject.org/torproject.org xenial main
+    state: present
+    filename: tor
+
+- name: Install tor repo
+  apt_repository:
+    repo: deb-src http://deb.torproject.org/torproject.org xenial main
+    state: present
+    filename: tor
+
+- name: Install security packages
+  package: name={{ item }} state=latest
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - pcscd
+    - pcsc-tools
+    - scdaemon
+    - gnupg2
+    - pass
+    - yubioath-desktop
+    - yubikey-personalization-gui
+    - yubikey-neo-manager
+    - tor
+    - deb.torproject.org-keyring
