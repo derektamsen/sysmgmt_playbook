@@ -47,6 +47,7 @@
   - vlc
   - yadm
   - python-gtk2
+  - python-gpgme
   - google-chrome-beta
   - syncthing
   - dropbox
