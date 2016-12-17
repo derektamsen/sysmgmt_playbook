@@ -43,7 +43,7 @@
 - name: Download and untar Postman
   unarchive:
     src: "https://dl.pstmn.io/download/latest/linux64"
-    dest: /opt/Postman
+    dest: /opt
     owner: root
     group: root
     remote_src: yes
