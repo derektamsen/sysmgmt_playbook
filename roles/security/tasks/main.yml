@@ -41,3 +41,4 @@
     - yubikey-neo-manager
     - tor
     - deb.torproject.org-keyring
+    - network-manager-openvpn-gnome
