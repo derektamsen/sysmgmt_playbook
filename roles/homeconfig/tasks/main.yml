@@ -19,6 +19,14 @@
     depth: 1
     umask: '0022'
 
+- name: Create ~/bin dir
+  file:
+    path: /home/derek/bin
+    state: directory
+    owner: derek
+    group: derek
+    mode: 0755
+
 - name: Create yadm config dir
   file:
     path: /home/derek/.yadm
