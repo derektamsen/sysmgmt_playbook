@@ -49,6 +49,12 @@
     remote_src: yes
     creates: /opt/Postman/Postman
 
+- name: Link Postman /usr/local/bin/postman
+  file:
+    src: /opt/Postman/Postman
+    dest: /usr/local/bin/postman
+    state: link
+
 - name: Install Vagrant from https://vagrantup.com
   apt:
     deb: 'https://releases.hashicorp.com/vagrant/1.9.1/vagrant_1.9.1_x86_64.deb'
