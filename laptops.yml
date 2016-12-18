@@ -1,0 +1,10 @@
+---
+- name: mobile systems for personal and development work
+  hosts:
+    - laptops
+  connection: local
+  # remote_user: root
+  become: true
+
+  roles:
+    - laptophw
