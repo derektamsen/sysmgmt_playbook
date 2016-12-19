@@ -1,0 +1,13 @@
+---
+# tasks file for virtualization
+
+# qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils
+
+- name: Install libvirt packages
+  package: name={{ item }} state=latest
+  with_items:
+    - qemu-kvm
+    - libvirt-bin
+    - ubuntu-vm-builder
+    - bridge-utils
+    - virt-manager
