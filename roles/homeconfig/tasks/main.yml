@@ -6,7 +6,7 @@
     name: derek
     comment: 'Derek Tamsen,,,'
     shell: /usr/bin/zsh
-    groups: sudo
+    groups: sudo,libvirt
     append: yes
 
 - name: Checkout oh-my-zsh
