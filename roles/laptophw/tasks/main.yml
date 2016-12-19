@@ -1,2 +1,8 @@
 ---
 # tasks file for laptophw
+
+- name: Install packages for mobile systems
+  package: name={{ item }} state=latest
+  with_items:
+    - tlp
+    - powertop
