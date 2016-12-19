@@ -20,7 +20,6 @@
     - libxml2-dev
     - libvirt-dev
     - zlib1g-dev
-    - build-dep
 
 - name: Install Vagrant from https://vagrantup.com
   apt:
