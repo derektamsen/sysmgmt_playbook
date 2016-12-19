@@ -21,3 +21,5 @@
   command: vagrant plugin install vagrant-mutate
   become: yes
   become_user: derek
+  args:
+    creates: /home/derek/.vagrant.d/gems/*/gems/vagrant-mutate-*
