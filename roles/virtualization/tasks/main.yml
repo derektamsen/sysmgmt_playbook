@@ -5,6 +5,9 @@
   apt:
     deb: 'https://releases.hashicorp.com/vagrant/1.9.1/vagrant_1.9.1_x86_64.deb'
 
+- name: Install Vagrant mutate plugin
+  command: vagrant plugin install vagrant-mutate
+
 - name: Install libvirt packages
   package: name={{ item }} state=latest
   with_items:
