@@ -4,6 +4,7 @@
 - name: Install libvirt packages
   package: name={{ item }} state=latest
   with_items:
+    - qemu
     - qemu-kvm
     - qemu-utils
     - libvirt-bin
@@ -11,7 +12,15 @@
     - ubuntu-vm-builder
     - bridge-utils
     - virt-manager
+    - ebtables
+    - dnsmasq
     - ruby-dev
+    - ruby-libvirt
+    - libxslt-dev
+    - libxml2-dev
+    - libvirt-dev
+    - zlib1g-dev
+    - build-dep
 
 - name: Install Vagrant from https://vagrantup.com
   apt:
@@ -23,3 +32,10 @@
   become_user: derek
   args:
     creates: /home/derek/.vagrant.d/gems/*/gems/vagrant-mutate-*
+
+- name: Install Vagrant libvirt plugin
+  command: vagrant plugin install vagrant-libvirt
+  become: yes
+  become_user: derek
+  args:
+    creates: /home/derek/.vagrant.d/gems/*/gems/vagrant-libvirt-*
