@@ -19,3 +19,5 @@
 
 - name: Install Vagrant mutate plugin
   command: vagrant plugin install vagrant-mutate
+  become: yes
+  become_user: derek
