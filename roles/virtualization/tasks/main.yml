@@ -7,7 +7,10 @@
   package: name={{ item }} state=latest
   with_items:
     - qemu-kvm
+    - qemu-utils
     - libvirt-bin
+    - libvirt-dev
     - ubuntu-vm-builder
     - bridge-utils
     - virt-manager
+    - ruby-dev
