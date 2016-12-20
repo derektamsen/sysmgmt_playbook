@@ -41,6 +41,7 @@
   package: name={{ item }} state=latest
   with_items:
   - fonts-inconsolata
+  - gnome-tweak-tool
   - weechat
   - gufw
   - zsh
