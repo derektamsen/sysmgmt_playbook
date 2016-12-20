@@ -51,9 +51,3 @@
   - google-chrome-beta
   - syncthing
   - dropbox
-
-- name: Enable syncthing service
-  systemd:
-    name: syncthing
-    enabled: yes
-    user: yes

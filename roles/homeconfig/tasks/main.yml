@@ -50,3 +50,11 @@
     owner: derek
     group: derek
     mode: 0755
+
+- name: Enable syncthing service
+  become: yes
+  become_user: derek
+  systemd:
+    name: syncthing
+    enabled: yes
+    user: yes
