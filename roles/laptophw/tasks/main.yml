@@ -6,3 +6,8 @@
   with_items:
     - tlp
     - powertop
+
+- name: Enable tlp service
+  systemd:
+    name: tlp
+    enabled: yes
