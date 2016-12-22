@@ -26,6 +26,23 @@
     state: present
     filename: tor
 
+- name: Ensure /etc/lightdm/lightdm.conf.d dir exists
+  file:
+    path: /etc/lightdm/lightdm.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Setup lightdm settings to disable guest sessions
+  copy:
+    src: "{{ role_path }}/files/lightdm_50-no-guest.conf"
+    dest: /etc/lightdm/lightdm.conf.d/50-no-guest.conf
+    owner: root
+    group: root
+    mode: 0644
+
+
 - name: Install security packages
   package: name={{ item }} state=latest
   with_items:
