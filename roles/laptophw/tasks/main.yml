@@ -11,3 +11,19 @@
   systemd:
     name: tlp
     enabled: yes
+
+- name: Ensure /etc/X11/xorg.conf.d dir exists
+  file:
+    path: /etc/X11/xorg.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Setup xorg settings for synaptics touchpads
+  copy:
+    src: "{{ role_path }}/files/xorg_50-synaptics.conf"
+    dest: /etc/X11/xorg.conf.d/50-synaptics.conf
+    owner: root
+    group: root
+    mode: 0644
