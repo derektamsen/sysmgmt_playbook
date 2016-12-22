@@ -27,3 +27,11 @@
     owner: root
     group: root
     mode: 0644
+
+- name: Setup xorg settings for intel graphics
+  copy:
+    src: "{{ role_path }}/files/xorg_10-intel.conf"
+    dest: /etc/X11/xorg.conf.d/10-intel.conf
+    owner: root
+    group: root
+    mode: 0644
