@@ -35,16 +35,3 @@
     owner: root
     group: root
     mode: 0644
-
-- name: Install the standby lockscript
-  copy:
-    src: "{{ role_path }}/files/systemd_sleep-locker.service"
-    dest: /etc/systemd/system/sleep-locker.service
-    owner: root
-    group: root
-    mode: 0644
-
-- name: Enable standby lockscript with systemd
-  systemd:
-    name: sleep-locker
-    enabled: yes
