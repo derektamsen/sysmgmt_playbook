@@ -1,0 +1,10 @@
+---
+# tasks file for backup
+
+- name: Install backup packages
+  package: name={{ item }} state=latest
+  with_items:
+    - deja-dup
+    - deja-dup-backend-cloudfiles
+    - deja-dup-backend-gvfs
+    - deja-dup-backend-s3

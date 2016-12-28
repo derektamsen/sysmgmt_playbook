@@ -10,6 +10,7 @@
   roles:
     - ansible
     - security
+    - backup
     - windowmanager-i3
     - productivity
     - development
