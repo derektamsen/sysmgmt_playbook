@@ -51,6 +51,14 @@
     group: derek
     mode: 0755
 
+- name: Create Screenshot dir
+  file:
+    path: /home/derek/Pictures/screenshots
+    state: directory
+    owner: derek
+    group: derek
+    mode: 0755
+
 - name: Enable syncthing service
   become: yes
   become_user: derek
