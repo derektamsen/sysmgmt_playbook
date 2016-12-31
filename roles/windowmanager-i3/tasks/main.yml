@@ -26,3 +26,7 @@
   - pulseaudio-utils
   - xbacklight
   - gnome-power-manager
+  - fonts-font-awesome
+  - feh
+  - thunar
+  - scrot
