@@ -27,6 +27,7 @@
   - xbacklight
   - gnome-power-manager
   - fonts-font-awesome
+  - xfonts-terminus
   - feh
   - thunar
   - scrot
