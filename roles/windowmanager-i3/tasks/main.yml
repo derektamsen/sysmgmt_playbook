@@ -27,8 +27,6 @@
   - xfce4-power-manager
   - blueman
   - i3
-  - xautolock
-  - suckless-tools
   - pulseaudio-utils
   - xbacklight
   - fonts-font-awesome
@@ -36,3 +34,5 @@
   - feh
   - thunar
   - scrot
+  - light-locker
+  - light-locker-settings
