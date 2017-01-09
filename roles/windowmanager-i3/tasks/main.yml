@@ -21,11 +21,16 @@
 - name: Install i3 packages and utilities
   package: name={{ item }} state=latest
   with_items:
+  - xfce4-settings
+  - xfce4-volumed
+  - volumeicon-alsa
+  - xfce4-power-manager
+  - blueman
   - i3
   - xautolock
+  - suckless-tools
   - pulseaudio-utils
   - xbacklight
-  - gnome-power-manager
   - fonts-font-awesome
   - xfonts-terminus
   - feh
