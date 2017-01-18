@@ -59,3 +59,4 @@
     - linux-image-extra-virtual
     - docker-engine
     - docker-compose
+    - gparted
