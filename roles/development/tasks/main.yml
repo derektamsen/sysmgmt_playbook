@@ -47,6 +47,7 @@
   package: name={{ item }} state=latest
   with_items:
     - vim
+    - vim-gnome
     - exfat-fuse
     - exfat-utils
     - build-essential
@@ -60,3 +61,4 @@
     - docker-engine
     - docker-compose
     - gparted
+    - exuberant-ctags
