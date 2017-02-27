@@ -28,3 +28,11 @@
     owner: root
     group: root
     mode: 0644
+
+- name: Setup xorg settings for thinkpad trackpoint and trackpad
+  copy:
+    src: "{{ role_path }}/files/xorg_80-thinkpad-mouse.conf"
+    dest: /etc/X11/xorg.conf.d/80-thinkpad-mouse.conf
+    owner: root
+    group: root
+    mode: 0644
