@@ -8,7 +8,7 @@
 
 - name: Add docker repo
   apt_repository:
-    repo: deb https://apt.dockerproject.org/repo ubuntu-xenial main
+    repo: deb https://apt.dockerproject.org/repo ubuntu-zesty main
     state: present
     filename: docker
 
@@ -27,6 +27,7 @@
 - name: Install Zeal PPA
   apt_repository:
     repo: 'ppa:zeal-developers/ppa'
+    codename: 'yakkety'
 
 - name: Download and untar Postman
   unarchive:

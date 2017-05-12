@@ -16,13 +16,7 @@
 
 - name: Install tor repo
   apt_repository:
-    repo: deb http://deb.torproject.org/torproject.org xenial main
-    state: present
-    filename: tor
-
-- name: Install tor repo
-  apt_repository:
-    repo: deb-src http://deb.torproject.org/torproject.org xenial main
+    repo: deb https://deb.torproject.org/torproject.org zesty main
     state: present
     filename: tor
 
