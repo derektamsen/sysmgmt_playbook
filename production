@@ -1,5 +1,8 @@
-[workstations]
-desktop
-
 [laptops]
 derek-thinkpad
+
+[retropies]
+retropie
+
+[workstations]
+desktop

@@ -2,3 +2,4 @@
 # include role playbooks
 - include: workstations.yml
 - include: laptops.yml
+- include: retropies.yml
