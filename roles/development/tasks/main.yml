@@ -27,7 +27,6 @@
 - name: Install Zeal PPA
   apt_repository:
     repo: 'ppa:zeal-developers/ppa'
-    codename: 'yakkety'
 
 - name: Download and untar Postman
   unarchive:
