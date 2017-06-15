@@ -4,7 +4,6 @@
 - name: Install base packages
   package: name={{ item }} state=latest
   with_items:
-    - python-pip
     - unattended-upgrades
 
 - name: Configure unattended-upgrades

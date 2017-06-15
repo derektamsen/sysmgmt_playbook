@@ -9,6 +9,7 @@
 - name: Install ansible packages
   package: name={{ item }} state=latest
   with_items:
+    - python-pip
     - software-properties-common
     - ansible
 
