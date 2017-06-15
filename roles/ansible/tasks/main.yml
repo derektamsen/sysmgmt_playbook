@@ -4,6 +4,7 @@
 - name: Install ansible repo
   apt_repository:
     repo: 'ppa:ansible/ansible'
+    codename: 'yakkety'
 
 - name: Install ansible packages
   package: name={{ item }} state=latest
