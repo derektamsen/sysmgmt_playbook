@@ -5,6 +5,8 @@
   package: name={{ item }} state=latest
   with_items:
     - unattended-upgrades
+    - apt-transport-https
+    - ca-certificates
 
 - name: Configure unattended-upgrades
   debconf:

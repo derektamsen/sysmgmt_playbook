@@ -39,8 +39,6 @@
 - name: Install security packages
   package: name={{ item }} state=latest
   with_items:
-    - apt-transport-https
-    - ca-certificates
     - pcscd
     - pcsc-tools
     - scdaemon
