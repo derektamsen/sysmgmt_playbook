@@ -23,7 +23,7 @@
 
 - name: Install Vagrant from https://vagrantup.com
   apt:
-    deb: 'https://releases.hashicorp.com/vagrant/1.9.1/vagrant_1.9.1_x86_64.deb'
+    deb: 'https://releases.hashicorp.com/vagrant/1.9.5/vagrant_1.9.5_x86_64.deb'
 
 - name: Install Vagrant mutate plugin
   command: vagrant plugin install vagrant-mutate
