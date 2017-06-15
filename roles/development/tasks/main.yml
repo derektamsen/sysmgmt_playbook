@@ -52,7 +52,6 @@
     - exfat-fuse
     - exfat-utils
     - build-essential
-    - python-pip
     - htop
     - iotop
     - iftop
