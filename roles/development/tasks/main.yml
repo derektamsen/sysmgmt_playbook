@@ -52,9 +52,6 @@
     - exfat-fuse
     - exfat-utils
     - build-essential
-    - htop
-    - iotop
-    - iftop
     - sshfs
     - zeal
     - linux-image-extra-{{ ansible_kernel }}
@@ -64,6 +61,5 @@
     - gparted
     - exuberant-ctags
     - tig
-    - tmux
     - ipcalc
     - whois

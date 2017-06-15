@@ -7,6 +7,10 @@
     - unattended-upgrades
     - apt-transport-https
     - ca-certificates
+    - htop
+    - iotop
+    - iftop
+    - tmux
 
 - name: Configure unattended-upgrades
   debconf:
