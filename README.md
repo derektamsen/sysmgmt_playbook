@@ -44,4 +44,5 @@ Run ansible locally
 
 Run ansible for specific roles against remote hosts
 
-        ansible-playbook site.yml -i production --limit retropies
+        ansible-playbook site.yml -i production --ask-become-pass \
+          --limit retropies

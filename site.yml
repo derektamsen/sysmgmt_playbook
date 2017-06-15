@@ -1,5 +1,6 @@
 ---
 # include role playbooks
-- include: workstations.yml
+- include: dockerhosts.yml
 - include: laptops.yml
 - include: retropies.yml
+- include: workstations.yml

@@ -1,0 +1,8 @@
+---
+- name: systems for running docker containers
+  hosts:
+    - dockerhosts
+  become: true
+
+  roles:
+    - base
