@@ -13,7 +13,7 @@
     - bridge-utils
     - virt-manager
     - ebtables
-    - dnsmasq
+    - dnsmasq-base
     - ruby-dev
     - ruby-libvirt
     - libxslt-dev
