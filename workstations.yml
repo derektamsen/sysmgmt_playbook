@@ -9,7 +9,6 @@
 
   roles:
     - base
-    - ansible
     - security
     - backup
     - windowmanager-i3

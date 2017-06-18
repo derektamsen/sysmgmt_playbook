@@ -1,0 +1,30 @@
+---
+# tasks file for docker-services
+
+- name: Install pip to setup managment utils
+  package: name={{ item }} state=latest
+  with_items:
+    - python-pip
+
+- name: Install pip utils to manage docker
+  pip: name={{ item }} state=present
+  with_items:
+    - docker-py
+    - docker-compose
+
+- name: Cache docker-gitserver for docker-compose
+  git:
+    repo: https://github.com/derektamsen/docker-gitserver.git
+    dest: /apps/containers/docker-gitserver
+    depth: 1
+
+- name: Use compose to start gitserver
+  docker_service:
+    project_src: /apps/containers/docker-gitserver
+    build: no
+    restarted: true
+
+- name: Ensure gitserver is running
+  assert:
+    that:
+      - "gitserver.dockergitserver_gitserver_1.state.running"
