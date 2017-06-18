@@ -46,3 +46,7 @@ Run ansible for specific roles against remote hosts
 
         ansible-playbook site.yml -i production --ask-become-pass \
           --limit retropies
+
+List facts from host
+
+        ansible -i production -m setup hostname
