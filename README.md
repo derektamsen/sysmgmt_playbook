@@ -29,6 +29,9 @@ database server.
 Development and Deploy Setup
 ----------------------------
 
+        pip install virtualenv
+        virtualenv venv
+        source venv/bin/activate
         pip install -r requirements.txt
 
 Usage

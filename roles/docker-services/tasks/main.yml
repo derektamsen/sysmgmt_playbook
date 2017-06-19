@@ -9,7 +9,7 @@
 - name: Install pip utils to manage docker
   pip: name={{ item }} state=present
   with_items:
-    - docker-py
+    - docker
     - docker-compose
 
 - name: Cache docker-gitserver for docker-compose
@@ -21,10 +21,10 @@
 - name: Use compose to start gitserver
   docker_service:
     project_src: /apps/containers/docker-gitserver
+    pull: yes
     build: no
-    restarted: true
 
-- name: Ensure gitserver is running
+- name: Ensure containers are running
   assert:
     that:
       - "gitserver.dockergitserver_gitserver_1.state.running"
