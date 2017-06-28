@@ -19,10 +19,15 @@
     depth: 1
 
 - name: Use compose to start gitserver
+  register: output
   docker_service:
     project_src: /apps/containers/docker-gitserver
     pull: yes
     build: no
+
+- name: Docker compose output
+  debug:
+    var: output
 
 - name: Ensure containers are running
   assert:
