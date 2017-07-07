@@ -19,6 +19,16 @@
     depth: 1
     umask: '0022'
 
+- name: Checkout zsh-syntax-highlighting
+  become: yes
+  become_user: derek
+  git:
+    repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
+    dest: /home/derek/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    update: no
+    depth: 1
+    umask: '0022'
+
 - name: Create ~/bin dir
   file:
     path: /home/derek/bin
