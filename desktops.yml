@@ -1,0 +1,10 @@
+---
+- name: desktop systems for personal and development work
+  hosts:
+    - desktops
+  connection: local
+  # remote_user: root
+  become: true
+
+  roles:
+    - desktophw

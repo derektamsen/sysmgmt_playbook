@@ -1,0 +1,11 @@
+---
+# tasks file for desktophw
+
+- name: Install Graphics Drivers PPA
+  apt_repository:
+    repo: 'ppa:graphics-drivers/ppa'
+
+- name: Install desktophw packages
+  package: name={{ item }} state=latest
+  with_items:
+    - nvidia-graphics-drivers-384

@@ -1,7 +1,7 @@
 ---
 - name: systems for personal and development work
   hosts:
-    - workstations
+    - desktops
     - laptops
   connection: local
   # remote_user: root
