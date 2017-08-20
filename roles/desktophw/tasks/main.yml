@@ -8,4 +8,4 @@
 - name: Install desktophw packages
   package: name={{ item }} state=latest
   with_items:
-    - nvidia-graphics-drivers-384
+    - nvidia-384
