@@ -43,8 +43,8 @@
     owner: root
     group: root
     mode: 0644
-    with_items:
-      - libvirt-qemu
+  with_items:
+    - libvirt-qemu
 
 - name: Install security packages
   package: name={{ item }} state=latest
