@@ -12,6 +12,13 @@
     - iftop
     - tmux
 
+- name: Remove unnecessary packages
+  package: name={{ item }} state=absent
+  with_items:
+    - unity-webapps-common
+    - whoopsie
+    - apport
+
 - name: Configure unattended-upgrades
   debconf:
     name: unattended-upgrades
