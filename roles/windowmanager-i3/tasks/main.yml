@@ -26,6 +26,14 @@
     group: root
     mode: 0644
 
+- name: Fix loading .Xresources on ubuntu with colors
+  copy:
+    src: "{{ role_path }}/files/x11-common"
+    dest: /etc/X11/Xresources/x11-common
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Install i3 packages and utilities
   package: name={{ item }} state=latest
   with_items:
