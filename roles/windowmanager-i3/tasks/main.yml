@@ -19,8 +19,6 @@
     update_cache: true
 
 - name: Configure terminal tty
-  vars:
-    console_font_size: "10x20"
   template:
     src: "{{ role_path }}/templates/console-setup.j2"
     dest: /etc/default/console-setup

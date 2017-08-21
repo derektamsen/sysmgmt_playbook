@@ -1,2 +1,4 @@
 ---
 # defaults file for windowmanager-i3
+windowsmanageri3:
+  console_font_size: "10x20"
