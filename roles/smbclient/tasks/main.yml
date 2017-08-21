@@ -1,0 +1,15 @@
+---
+# tasks file for smbclient
+
+- name: Setup samba defaults
+  copy:
+    src: "{{ role_path }}/files/smb.conf"
+    dest: /etc/samba/smb.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install security packages
+  package: name={{ item }} state=latest
+  with_items:
+    - smbclient

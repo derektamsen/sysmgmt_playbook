@@ -16,4 +16,5 @@
     - development
     - docker
     - virtualization
+    - smbclient
     - homeconfig
