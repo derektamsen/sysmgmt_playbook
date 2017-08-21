@@ -1,5 +1,9 @@
 ---
 # tasks file for smbclient
+- name: Install samba client packages
+  package: name={{ item }} state=latest
+  with_items:
+    - smbclient
 
 - name: Setup samba defaults
   copy:
@@ -8,8 +12,3 @@
     owner: root
     group: root
     mode: 0644
-
-- name: Install samba client packages
-  package: name={{ item }} state=latest
-  with_items:
-    - smbclient
