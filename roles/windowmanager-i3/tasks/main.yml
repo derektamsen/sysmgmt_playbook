@@ -22,7 +22,7 @@
   vars:
     console_font_size: "10x20"
   template:
-    src: "{{ role_path }}/templates/console-setup.js"
+    src: "{{ role_path }}/templates/console-setup.j2"
     dest: /etc/default/console-setup
     owner: root
     group: root
