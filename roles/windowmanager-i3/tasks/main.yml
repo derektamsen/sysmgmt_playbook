@@ -37,9 +37,3 @@
   - scrot
   - light-locker
   - light-locker-settings
-
-- name: Purge the i3 notificaition bubble
-  apt:
-    name: dunst
-    state: absent
-    purge: yes
