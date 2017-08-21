@@ -5,6 +5,22 @@
   apt_repository:
     repo: 'ppa:graphics-drivers/ppa'
 
+- name: Ensure /etc/X11/xorg.conf.d dir exists
+  file:
+    path: /etc/X11/xorg.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Setup xorg settings for nvidia graphics
+  copy:
+    src: "{{ role_path }}/files/xorg_10-nvidia.conf"
+    dest: /etc/X11/xorg.conf.d/10-nvidia.conf
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Install desktophw packages
   package: name={{ item }} state=latest
   with_items:
