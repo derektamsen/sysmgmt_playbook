@@ -36,6 +36,16 @@
     group: root
     mode: 0644
 
+- name: Hide users from lightdm
+  copy:
+    src: "{{ role_path }}/files/lightdm-hide-systemusers"
+    dest: /var/lib/AccountsService/users/{{ item }}
+    owner: root
+    group: root
+    mode: 0644
+    with_items:
+      - libvirt-qemu
+
 - name: Install security packages
   package: name={{ item }} state=latest
   with_items:
