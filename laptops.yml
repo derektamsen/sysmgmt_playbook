@@ -6,9 +6,5 @@
   # remote_user: root
   become: true
 
-  vars:
-    windowsmanageri3:
-      console_font_size: "16x32"
-
   roles:
     - role: laptophw
