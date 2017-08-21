@@ -19,8 +19,10 @@
     update_cache: true
 
 - name: Configure terminal tty
-  copy:
-    src: "{{ role_path }}/files/console-setup"
+  vars:
+    console_font_size: "10x20"
+  template:
+    src: "{{ role_path }}/templates/console-setup.js"
     dest: /etc/default/console-setup
     owner: root
     group: root

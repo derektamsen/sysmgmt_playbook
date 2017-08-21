@@ -1,0 +1,3 @@
+---
+# file: group_vars/laptops
+console_font_size: "16x32"
