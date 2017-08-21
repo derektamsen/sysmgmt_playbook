@@ -18,6 +18,14 @@
     name: sur5r-keyring
     update_cache: true
 
+- name: Configure terminal tty
+  copy:
+    src: "{{ role_path }}/files/console-setup"
+    dest: /etc/default/console-setup
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Install i3 packages and utilities
   package: name={{ item }} state=latest
   with_items:
