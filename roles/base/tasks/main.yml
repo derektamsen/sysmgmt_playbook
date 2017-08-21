@@ -18,3 +18,13 @@
     question: unattended-upgrades/enable_auto_updates
     value: true
     vtype: boolean
+
+- name: Set ntp time servers
+  template:
+    src: "{{ role_path }}/templates/timesyncd.conf.j2"
+    dest: /etc/systemd/timesyncd.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart systemd-timesyncd
