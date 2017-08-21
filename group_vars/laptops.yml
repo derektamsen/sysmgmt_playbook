@@ -1,3 +1,4 @@
 ---
+# Variables listed here are applicable to the laptops host group
 windowsmanageri3:
   console_font_size: "16x32"
