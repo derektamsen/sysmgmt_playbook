@@ -9,7 +9,7 @@
     group: root
     mode: 0644
 
-- name: Install security packages
+- name: Install samba client packages
   package: name={{ item }} state=latest
   with_items:
     - smbclient
