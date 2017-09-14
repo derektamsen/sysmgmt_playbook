@@ -37,6 +37,18 @@
     state: present
     filename: 'dropbox'
 
+- name: Import Typora repo gpg key
+  apt_key:
+    id: BA300B7755AFCFAE
+    keyserver: keyserver.ubuntu.com
+    state: present
+
+- name: Add Typora repo
+  apt_repository:
+    repo: deb http://typora.io linux/
+    state: present
+    filename: 'typora'
+
 - name: Install productivity packages
   package: name={{ item }} state=latest
   with_items:
@@ -53,3 +65,4 @@
   - syncthing
   - dropbox
   - irssi
+  - typora
