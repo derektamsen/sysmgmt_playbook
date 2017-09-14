@@ -45,7 +45,7 @@
 
 - name: Add Typora repo
   apt_repository:
-    repo: deb http://typora.io linux/
+    repo: deb https://typora.io ./linux/
     state: present
     filename: 'typora'
 
