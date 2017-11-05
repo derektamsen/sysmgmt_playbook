@@ -43,8 +43,6 @@
     - build-essential
     - sshfs
     - zeal
-    - linux-image-extra-{{ ansible_kernel }}
-    - linux-image-extra-virtual
     - gparted
     - exuberant-ctags
     - tig
