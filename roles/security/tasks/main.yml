@@ -30,7 +30,7 @@
     - pass
     - yubioath-desktop
     - yubikey-personalization-gui
-    - yubikey-neo-manager
+    - yubikey-manager-qt
     - tor
     - torbrowser-launcher
     - deb.torproject.org-keyring
