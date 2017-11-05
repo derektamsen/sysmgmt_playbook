@@ -24,5 +24,4 @@
 - name: Install desktophw packages
   package: name={{ item }} state=latest
   with_items:
-    - nvidia-384
-    - mdadm
+    - nvidia-387
