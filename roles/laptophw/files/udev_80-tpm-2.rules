@@ -1,0 +1,3 @@
+# tpm 2 devices need to be world readable
+SUBSYSTEM=="tpm", ACTION=="add", MODE="0666"
+

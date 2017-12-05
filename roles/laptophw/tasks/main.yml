@@ -7,6 +7,8 @@
     - tlp
     - powertop
     - xserver-xorg-input-libinput
+    - tpm2-tools
+    - tss2
 
 - name: Enable tlp service
   systemd:
@@ -36,3 +38,27 @@
     owner: root
     group: root
     mode: 0644
+
+- name: Ensure /etc/udev/rules.d/80-tpm-2.rules exists
+  copy:
+    src: "{{ role_path }}/files/udev_80-tpm-2.rules"
+    dest: /etc/udev/rules.d/80-tpm-2.rules
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Checkout tpm2-luks
+  git:
+    repo: 'https://github.com/rqou/tpm2-luks.git'
+    dest: /opt/tpmdisk
+    update: no
+    depth: 1
+    umask: '0022'
+
+- name: Ensure zzz-tpmdisk in /usr/share/initramfs-tools/hooks/
+  copy:
+    src: /opt/tpmdisk/zzz-tpmdisk
+    dest: /usr/share/initramfs-tools/hooks/zzz-tpmdisk
+    owner: root
+    group: root
+    mode: 0755
