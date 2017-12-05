@@ -44,6 +44,7 @@
   - blueman
   - i3
   - pulseaudio-utils
+  - pavucontrol
   - xbacklight
   - fonts-font-awesome
   - xfonts-terminus
