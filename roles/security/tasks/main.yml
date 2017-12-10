@@ -27,6 +27,7 @@
     - pcsc-tools
     - scdaemon
     - gnupg2
+    - hopenpgp-tools
     - pass
     - yubioath-desktop
     - yubikey-personalization-gui
