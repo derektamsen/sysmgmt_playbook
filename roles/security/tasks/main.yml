@@ -20,6 +20,10 @@
     state: present
     filename: tor
 
+- name: Install torbrowser-launcher ppa
+  apt_repository:
+    repo: 'ppa:micahflee/ppa'
+
 - name: Install security packages
   package: name={{ item }} state=latest
   with_items:
