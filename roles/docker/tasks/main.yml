@@ -8,7 +8,7 @@
 
 - name: Add docker repo
   apt_repository:
-    repo: deb https://apt.dockerproject.org/repo ubuntu-zesty main
+    repo: deb https://apt.dockerproject.org/repo ubuntu-{{ docker.distro }} main
     state: present
     filename: docker
 

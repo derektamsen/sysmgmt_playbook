@@ -1,2 +1,4 @@
 ---
 # defaults file for docker
+docker:
+  distro: {{ ansible_distribution_release }}
