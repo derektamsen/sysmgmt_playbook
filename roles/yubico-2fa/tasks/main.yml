@@ -1,0 +1,17 @@
+---
+# tasks file for roles/yubico-2fa
+
+- name: Install Yubico PPA
+  apt_repository:
+    repo: 'ppa:yubico/stable'
+
+- name: Install yubico-2fa packages
+  package: name={{ item }} state=latest
+  with_items:
+    - libpam-yubico
+
+- name: Remove common-auth from pamd/sshd
+  lineinfile:
+    path: /etc/pam.d/sshd
+    state: absent
+    regexp: '^@include common-auth$'
