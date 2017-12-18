@@ -3,3 +3,4 @@
 *.retry
 tmp/
 venv/
+.vault_pass

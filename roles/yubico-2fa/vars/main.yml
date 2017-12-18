@@ -1,0 +1,7 @@
+---
+# vars file for roles/yubico-2fa
+yubico_2fa:
+  sshd_config:
+    ChallengeResponseAuthentication: "yes"
+    AuthenticationMethods: "publickey,keyboard-interactive:pam"
+    UsePAM: "yes"

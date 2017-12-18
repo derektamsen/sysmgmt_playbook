@@ -46,15 +46,17 @@ Install Ansible
 Run ansible locally
 
         ansible-pull -U https://github.com/derektamsen/sysmgmt_playbook.git \
-          --ask-become-pass \
           --inventory production \
           site.yml
 
 Run ansible for specific roles against remote hosts
 
-        ansible-playbook site.yml -i production --ask-become-pass \
-          --limit retropies
+        ansible-playbook site.yml -i production --limit retropies
 
 List facts from host
 
         ansible -i production -m setup hostname
+
+Create a new role playbook
+
+        ansible-galaxy init role/new-playbook-name
