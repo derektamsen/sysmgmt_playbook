@@ -1,2 +1,4 @@
 ---
 # handlers file for roles/yubico-2fa
+- name: reload sshd
+  service: name=sshd state=reloaded

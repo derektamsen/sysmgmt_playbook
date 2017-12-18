@@ -10,8 +10,34 @@
   with_items:
     - libpam-yubico
 
+- name: Add yubikey user mappings
+  template:
+    src: "{{ role_path }}/templates/yubikey_mappings.j2"
+    dest: /etc/yubikey_mappings
+    owner: root
+    group: root
+    mode: '0600'
+    backup: yes
+
 - name: Remove common-auth from pamd/sshd
   lineinfile:
     path: /etc/pam.d/sshd
     state: absent
     regexp: '^@include common-auth$'
+
+- name: Add pam_yubico otp auth to pam sshd
+  lineinfile:
+    path: /etc/pam.d/sshd
+    insertbefore: '^account\s+required\s+pam_nologin.so$'
+    line: "auth required pam_yubico.so id={{ vault_yubico_2fa.yubico_otp_api.id }} key={{ vault_yubico_2fa.yubico_otp_api.key }} authfile=/etc/yubikey_mappings mode=client debug"
+
+- name: Template sshd_config to enable yubikey OTP
+  template:
+    src: "{{ role_path }}/templates/sshd_config.j2"
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: '0644'
+    validate: /usr/sbin/sshd -t -f %s
+    backup: yes
+  notify: reload sshd

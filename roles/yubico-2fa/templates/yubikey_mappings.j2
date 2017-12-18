@@ -1,0 +1,3 @@
+{% for user, serials in vault_yubico_2fa.yubico_mapping.iteritems() %}
+{{ user }}:{{ ":".join(serials) }}
+{% endfor %}
