@@ -24,6 +24,17 @@
   apt_repository:
     repo: 'ppa:micahflee/ppa'
 
+- name: Add Signal repo gpg key
+  apt_key:
+    id: DBA36B5181D0C816F630E889D980A17457F6FB06
+    keyserver: keys.gnupg.net
+
+- name: Install Signal repo
+  apt_repository:
+    repo: deb [arch=amd64] https://updates.signal.org/desktop/apt {{ ansible_distribution_release }} main
+    state: present
+    filename: signal
+
 - name: Install security packages
   package: name={{ item }} state=latest
   with_items:
@@ -40,3 +51,4 @@
     - torbrowser-launcher
     - deb.torproject.org-keyring
     - network-manager-openvpn-gnome
+    - signal-desktop
