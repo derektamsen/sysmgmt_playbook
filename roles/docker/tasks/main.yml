@@ -1,26 +1,26 @@
 ---
 # tasks file for docker
 
-- name: Install docker repo gpg key
+- name: Install docker-ce repo gpg key
   apt_key:
-    id: 58118E89F3A912897C070ADBF76221572C52609D
+    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
     keyserver: 'hkp://ha.pool.sks-keyservers.net:80'
 
-- name: Add docker repo
+- name: Add docker-ce repo
   apt_repository:
-    repo: deb https://apt.dockerproject.org/repo ubuntu-{{ docker.distro }} main
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
     state: present
     filename: docker
 
 - name: Install docker-compose from github
   get_url:
-    url: https://github.com/docker/compose/releases/download/1.17.0/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}
+    url: https://github.com/docker/compose/releases/download/1.19.0/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}
     dest: /usr/local/bin/docker-compose
     owner: root
     group: root
     mode: 0755
 
-- name: Install development packages
+- name: Install docker packages
   package: name={{ item }} state=latest
   with_items:
-    - docker-engine
+    - docker-ce
