@@ -49,6 +49,18 @@
     state: present
     filename: 'typora'
 
+- name: Import Spotify repo gpg key
+  apt_key:
+    id: 0DF731E45CE24F27EEEB1450EFDC8610341D9410
+    keyserver: keyserver.ubuntu.com
+    state: present
+
+- name: Add Spotify repo
+  apt_repository:
+    repo: deb http://repository.spotify.com stable non-free
+    state: present
+    filename: 'spotify'
+
 - name: Install productivity packages
   package: name={{ item }} state=latest
   with_items:
@@ -66,3 +78,4 @@
   - dropbox
   - irssi
   - typora
+  - spotify-client
