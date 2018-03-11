@@ -1,2 +1,5 @@
 ---
 # vars file for laptophw
+laptophw:
+  powertop:
+    bin: "/usr/sbin/powertop"

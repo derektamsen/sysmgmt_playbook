@@ -39,6 +39,22 @@
     group: root
     mode: 0644
 
+- name: Template powertop unit file
+  template:
+    src: "{{ role_path }}/templates/powertop.service.j2"
+    dest: /etc/systemd/system/powertop.service
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  notify: reload powertop
+
+- name: Ensure powertop is enabled and running
+  systemd:
+    name: powertop
+    enabled: yes
+    state: running
+
 - name: Ensure /etc/udev/rules.d/80-tpm-2.rules exists
   copy:
     src: "{{ role_path }}/files/udev_80-tpm-2.rules"

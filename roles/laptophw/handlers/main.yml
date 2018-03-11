@@ -1,2 +1,4 @@
 ---
 # handlers file for laptophw
+- name: reload powertop
+  service: name=powertop state=reloaded daemon_reload=yes
