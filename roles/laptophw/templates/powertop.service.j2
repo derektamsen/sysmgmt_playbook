@@ -1,0 +1,9 @@
+[Unit]
+Description=Powertop tunings
+
+[Service]
+ExecStart={{ laptophw.powertop.bin }} --auto-tune
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
