@@ -53,7 +53,7 @@
   systemd:
     name: powertop
     enabled: yes
-    state: running
+    state: started
 
 - name: Ensure /etc/udev/rules.d/80-tpm-2.rules exists
   copy:
