@@ -69,6 +69,7 @@
   - gufw
   - zsh
   - zsh-syntax-highlighting
+  - autojump
   - vlc
   - yadm
   - python-gtk2
