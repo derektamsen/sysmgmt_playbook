@@ -25,18 +25,6 @@
     state: present
     filename: 'syncthing'
 
-- name: Import dropbox repo gpg key
-  apt_key:
-    id: 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
-    keyserver: keyserver.ubuntu.com
-    state: present
-
-- name: Add dropbox repo
-  apt_repository:
-    repo: deb http://linux.dropbox.com/ubuntu xenial main
-    state: present
-    filename: 'dropbox'
-
 - name: Import Typora repo gpg key
   apt_key:
     id: BA300B7755AFCFAE
@@ -76,6 +64,5 @@
   - python-gpgme
   - google-chrome-beta
   - syncthing
-  - dropbox
   - typora
   - spotify-client
