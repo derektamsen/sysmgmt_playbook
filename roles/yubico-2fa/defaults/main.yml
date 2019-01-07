@@ -1,2 +1,6 @@
 ---
 # defaults file for roles/yubico-2fa
+sshd_config:
+  ChallengeResponseAuthentication: "yes"
+  AuthenticationMethods: "publickey,keyboard-interactive:pam"
+  UsePAM: "yes"

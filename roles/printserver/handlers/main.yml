@@ -1,0 +1,7 @@
+---
+# handlers file for printserver
+- name: restart cups
+  service: name=cups state=restarted
+
+- name: restart cloud-print-connector
+  service: name=cloud-print-connector state=restarted

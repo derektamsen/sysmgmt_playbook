@@ -50,8 +50,8 @@ PermitEmptyPasswords no
 
 # Change to yes to enable challenge-response passwords (beware issues with
 # some PAM modules and threads)
-ChallengeResponseAuthentication {{ yubico_2fa.sshd_config.ChallengeResponseAuthentication }}
-AuthenticationMethods {{ yubico_2fa.sshd_config.AuthenticationMethods }}
+ChallengeResponseAuthentication {{ sshd_config.ChallengeResponseAuthentication }}
+AuthenticationMethods {{ sshd_config.AuthenticationMethods }}
 
 # Change to no to disable tunnelled clear text passwords
 PasswordAuthentication no
@@ -94,6 +94,6 @@ Subsystem sftp /usr/lib/openssh/sftp-server
 # If you just want the PAM account and session checks to run without
 # PAM authentication, then enable this but set PasswordAuthentication
 # and ChallengeResponseAuthentication to 'no'.
-UsePAM {{ yubico_2fa.sshd_config.UsePAM }}
+UsePAM {{ sshd_config.UsePAM }}
 
 AllowGroups ssh_users

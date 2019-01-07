@@ -1,0 +1,11 @@
+---
+- name: systems for handling print jobs
+  hosts:
+    - printservers
+  become: true
+
+  roles:
+    - base
+    - sshserver
+    - golang
+    - printserver

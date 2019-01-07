@@ -1,0 +1,128 @@
+---
+# tasks file for printserver
+
+- name: Install print server packages
+  package: name={{ item }} state=latest
+  with_items:
+    - avahi-daemon
+    - cups
+    - build-essential
+    - libcups2-dev
+    - libavahi-client-dev
+    - git
+    - bzr
+
+- name: Allow ufw avahi traffic for printer discovery
+  ufw:
+    rule: allow
+    name: Bonjour
+
+- name: Allow ufw ipp traffic
+  ufw:
+    rule: allow
+    name: IPP
+
+- name: Allow cloud-print-connector ufw
+  ufw:
+    rule: allow
+    comment: cloud-print-connector
+    port: 26000:26999
+    proto: tcp
+
+- name: Setup cupsd settings
+  copy:
+    src: "{{ role_path }}/files/cupsd.conf"
+    dest: /etc/cups/cupsd.conf
+    owner: root
+    group: root
+    mode: 0644
+    validate: /usr/sbin/cupsd -t -c %s
+  notify:
+    - restart cups
+
+- name: Add derek to lpadmin group
+  user:
+    name: derek
+    groups: lpadmin
+    append: yes
+
+- name: Enable cups service
+  systemd:
+    name: cups
+    daemon_reload: yes
+    enabled: yes
+    state: started
+
+- name: Go get gcp cloud print connector
+  shell: /usr/local/go/bin/go get github.com/google/cloud-print-connector/...
+  args:
+    creates: ~/go/bin/gcp-cups-connector
+
+- name: Add account for cloud-print-connector
+  user:
+    name: cloud-print-connector
+    shell: /usr/sbin/nologin
+    createhome: no
+    system: yes
+
+- name: Create /opt/cloud-print-connector
+  file:
+    path: /opt/cloud-print-connector
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Create /var/log/cloud-print-connector
+  file:
+    path: /var/log/cloud-print-connector
+    state: directory
+    owner: cloud-print-connector
+    group: cloud-print-connector
+    mode: 0755
+
+- name: Copy gcp-connector-util
+  copy:
+    src: ~/go/bin/gcp-connector-util
+    dest: /opt/cloud-print-connector/gcp-connector-util
+    remote_src: yes
+    owner: root
+    group: root
+    mode: 0755
+  notify:
+    - restart cloud-print-connector
+
+- name: Copy gcp-cups-connector
+  copy:
+    src: ~/go/bin/gcp-cups-connector
+    dest: /opt/cloud-print-connector/gcp-cups-connector
+    remote_src: yes
+    owner: root
+    group: root
+    mode: 0755
+  notify:
+    - restart cloud-print-connector
+
+- name: Setup gcp-cups-connector settings
+  copy:
+    src: "{{ role_path }}/files/gcp-cups-connector.config.json"
+    dest: /opt/cloud-print-connector/gcp-cups-connector.config.json
+    owner: root
+    group: cloud-print-connector
+    mode: 0640
+  notify:
+    - restart cloud-print-connector
+
+- name: Setup cloud-print-connector unit file
+  copy:
+    src: "{{ role_path }}/files/cloud-print-connector.service"
+    dest: /etc/systemd/system/cloud-print-connector.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable cloud-print-connector service
+  systemd:
+    name: cloud-print-connector
+    enabled: yes
+    state: started
