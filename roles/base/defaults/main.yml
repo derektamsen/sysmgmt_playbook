@@ -1,5 +1,4 @@
 ---
 # defaults file for base
-base:
-  ntp:
-    servers: "time1.google.com time2.google.com time3.google.com time4.google.com"
+ntp:
+  servers: "time1.google.com time2.google.com time3.google.com time4.google.com"

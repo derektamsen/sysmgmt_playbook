@@ -11,6 +11,8 @@
     - iotop
     - iftop
     - tmux
+    - ufw
+    - zsh
 
 - name: Remove unnecessary packages
   package: name={{ item }} state=absent
@@ -35,3 +37,36 @@
     mode: 0644
   notify:
     - restart systemd-timesyncd
+
+- name: Enable UFW firewall
+  when: ufw_state is defined
+  ufw:
+    state: "{{ ufw_state }}"
+
+- name: Enable UFW firewall rules only if they are specified
+  when: ufw_rules_allow is defined
+  ufw:
+    rule: allow
+    name: "{{ item.name }}"
+  with_items: "{{ ufw_rules_allow }}"
+
+- name: "Add group {{ item.name }}"
+  group:
+    name: "{{ item.name }}"
+  with_items: "{{ user_groups }}"
+
+- name: "Add account for {{ item.name }}"
+  user:
+    name: "{{ item.name }}"
+    comment: "{{ item.comment }}"
+    shell: "{{ item.shell }}"
+    groups: "{{ item.groups }}"
+    append: "{{ item.append }}"
+  with_items: "{{ users }}"
+
+- name: "Set authorized keys for {{ item.user }}"
+  authorized_key:
+    user: "{{ item.user }}"
+    state: "{{ item.state }}"
+    key: "{{ item.key }}"
+  with_items: "{{ ssh_authorized_keys }}"

@@ -9,3 +9,6 @@ retropie
 
 [desktops]
 desktop
+
+[printservers]
+officeprinter01.local

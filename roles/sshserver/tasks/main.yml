@@ -1,0 +1,24 @@
+---
+# tasks file for sshserver
+- name: Install ssh server packages
+  package: name={{ item }} state=latest
+  with_items:
+    - openssh-server
+
+- name: Enable ssh service
+  systemd:
+    name: ssh
+    daemon_reload: yes
+    enabled: yes
+    state: started
+
+- name: Template sshd_config
+  template:
+    src: "{{ role_path }}/templates/sshd_config.j2"
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: '0644'
+    validate: /usr/sbin/sshd -t -f %s
+    backup: yes
+  notify: reload sshd
