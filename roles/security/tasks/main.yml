@@ -49,6 +49,7 @@
     - yubikey-manager-qt
     - tor
     - torbrowser-launcher
+    - onionshare
     - deb.torproject.org-keyring
     - network-manager-openvpn-gnome
     - signal-desktop
