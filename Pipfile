@@ -8,6 +8,10 @@ verify_ssl = true
 [packages]
 ansible = ">=2.7"
 ansible-lint = ">=4.0"
+pyyaml = ">=4.2b1"
 
 [requires]
 python_version = "2.7"
+
+[pipenv]
+allow_prereleases = true
