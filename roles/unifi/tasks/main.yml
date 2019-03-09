@@ -1,0 +1,69 @@
+---
+# tasks file for unifi
+
+- name: Import unifi repo gpg key
+  apt_key:
+    id: 06E85760C0A52C50
+    url: https://dl.ui.com/unifi/unifi-repo.gpg
+    state: present
+
+- name: Add unifi repo
+  apt_repository:
+    repo: deb http://www.ui.com/downloads/unifi/debian stable ubiquiti
+    state: present
+    filename: 100-ubnt-unifi.list
+
+- name: Install unifi packages
+  package: name={{ item }} state=latest
+  with_items:
+  - openjdk-8-jre-headless
+  - unifi
+
+- name: Allow unifi mobile speed test ufw
+  ufw:
+    rule: allow
+    comment: unifi-mobile-speed-test
+    port: 6789
+    proto: tcp
+
+- name: Allow unifi web http ufw
+  ufw:
+    rule: allow
+    comment: unifi-web-http
+    port: 8080
+    proto: tcp
+
+- name: Allow unifi web https ufw
+  ufw:
+    rule: allow
+    comment: unifi-web-https
+    port: 8443
+    proto: tcp
+
+- name: Allow unifi portal http ufw
+  ufw:
+    rule: allow
+    comment: unifi-portal-http
+    port: 8880
+    proto: tcp
+
+- name: Allow unifi portal https ufw
+  ufw:
+    rule: allow
+    comment: unifi-portal-https
+    port: 8843
+    proto: tcp
+
+- name: Allow unifi stun ufw
+  ufw:
+    rule: allow
+    comment: unifi-stun
+    port: 3478
+    proto: udp
+
+- name: Allow unifi discovery ufw
+  ufw:
+    rule: allow
+    comment: unifi-discovery
+    port: 10001
+    proto: udp

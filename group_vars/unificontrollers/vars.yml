@@ -1,0 +1,3 @@
+---
+# Variables listed here are applicable to the printservers host group
+ufw_state: enabled
