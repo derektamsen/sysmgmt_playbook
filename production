@@ -11,4 +11,7 @@ retropie
 desktop
 
 [printservers]
-officeprinter01.local
+officeprinter01
+
+[unificontrollers]
+unifi

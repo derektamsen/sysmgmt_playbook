@@ -1,0 +1,10 @@
+---
+- name: systems running unifi control software
+  hosts:
+    - unificontrollers
+  become: true
+
+  roles:
+    - base
+    - sshserver
+    - unifi
