@@ -31,7 +31,7 @@
 
 - name: Install Signal repo
   apt_repository:
-    repo: deb [arch=amd64] https://updates.signal.org/desktop/apt {{ ansible_distribution_release }} main
+    repo: deb [arch=amd64] https://updates.signal.org/desktop/apt artful main
     state: present
     filename: signal
 
