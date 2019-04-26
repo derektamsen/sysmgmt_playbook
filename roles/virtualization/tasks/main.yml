@@ -1,40 +1,11 @@
 ---
 # tasks file for virtualization
 
-- name: Install libvirt packages
+- name: Install virtualbox packages
   package: name={{ item }} state=latest
   with_items:
-    - qemu
-    - qemu-kvm
-    - qemu-utils
-    - libvirt-bin
-    - libvirt-dev
-    - ubuntu-vm-builder
-    - bridge-utils
-    - virt-manager
-    - ebtables
-    - dnsmasq-base
-    - ruby-dev
-    - ruby-libvirt
-    - libxslt-dev
-    - libxml2-dev
-    - libvirt-dev
-    - zlib1g-dev
+    - virtualbox
 
 - name: Install Vagrant from https://vagrantup.com
   apt:
-    deb: 'https://releases.hashicorp.com/vagrant/2.0.1/vagrant_2.0.1_x86_64.deb'
-
-- name: Install Vagrant mutate plugin
-  command: vagrant plugin install vagrant-mutate
-  become: yes
-  become_user: derek
-  args:
-    creates: /home/derek/.vagrant.d/gems/*/gems/vagrant-mutate-*
-
-- name: Install Vagrant libvirt plugin
-  command: vagrant plugin install vagrant-libvirt
-  become: yes
-  become_user: derek
-  args:
-    creates: /home/derek/.vagrant.d/gems/*/gems/vagrant-libvirt-*
+    deb: 'https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb'
