@@ -44,6 +44,28 @@
     dest: /usr/local/bin/postman
     state: link
 
+- name: Download hub
+  get_url:
+    url: https://github.com/github/hub/releases/download/v2.11.2/hub-linux-amd64-2.11.2.tgz
+    dest: /usr/local/src/hub/hub-linux-amd64.tgz
+    checksum: sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+
+- name: Unarchive hub src
+  unarchive:
+    src: /usr/local/src/hub/hub-linux-amd64.tgz
+    dest: /opt/hub
+    extra_opts: [--strip-components=1]
+    remote_src: yes
+    creates: /opt/hub/bin/hub
+    owner: root
+    group: root
+
+- name: Link hub /usr/local/bin/hub
+  file:
+    src: /opt/hub/bin/hub
+    dest: /usr/local/bin/hub
+    state: link
+
 - name: Install development packages
   package: name={{ item }} state=latest
   with_items:
