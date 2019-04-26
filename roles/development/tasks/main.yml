@@ -52,6 +52,14 @@
     group: root
     mode: 0755
 
+- name: Ensure /opt/hub
+  file:
+    path: /opt/hub
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
 - name: Download hub
   get_url:
     url: https://github.com/github/hub/releases/download/v2.11.2/hub-linux-amd64-2.11.2.tgz
