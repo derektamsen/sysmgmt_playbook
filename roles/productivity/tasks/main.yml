@@ -60,7 +60,7 @@
   - vlc
   - yadm
   - python-gtk2
-  - python-gpgme
+  - python-gpg
   - google-chrome-beta
   - syncthing
   - typora
