@@ -16,7 +16,7 @@
 - name: Install i3 keyring sur5r
   apt:
     name: sur5r-keyring
-    update_cache: true
+    update_cache: True
 
 - name: Configure terminal tty
   template:
