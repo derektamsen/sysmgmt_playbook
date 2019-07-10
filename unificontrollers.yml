@@ -2,7 +2,7 @@
 - name: systems running unifi control software
   hosts:
     - unificontrollers
-  become: true
+  become: True
 
   roles:
     - base

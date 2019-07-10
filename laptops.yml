@@ -4,7 +4,7 @@
     - laptops
   connection: local
   # remote_user: root
-  become: true
+  become: True
 
   roles:
     - role: laptophw
