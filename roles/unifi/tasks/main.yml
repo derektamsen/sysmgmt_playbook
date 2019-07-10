@@ -23,47 +23,47 @@
   ufw:
     rule: allow
     comment: unifi-mobile-speed-test
-    port: 6789
+    port: '6789'
     proto: tcp
 
 - name: Allow unifi web http ufw
   ufw:
     rule: allow
     comment: unifi-web-http
-    port: 8080
+    port: '8080'
     proto: tcp
 
 - name: Allow unifi web https ufw
   ufw:
     rule: allow
     comment: unifi-web-https
-    port: 8443
+    port: '8443'
     proto: tcp
 
 - name: Allow unifi portal http ufw
   ufw:
     rule: allow
     comment: unifi-portal-http
-    port: 8880
+    port: '8880'
     proto: tcp
 
 - name: Allow unifi portal https ufw
   ufw:
     rule: allow
     comment: unifi-portal-https
-    port: 8843
+    port: '8843'
     proto: tcp
 
 - name: Allow unifi stun ufw
   ufw:
     rule: allow
     comment: unifi-stun
-    port: 3478
+    port: '3478'
     proto: udp
 
 - name: Allow unifi discovery ufw
   ufw:
     rule: allow
     comment: unifi-discovery
-    port: 10001
+    port: '10001'
     proto: udp
