@@ -4,7 +4,7 @@
 - name: Install docker-ce repo gpg key
   apt_key:
     id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
-    keyserver: 'hkp://ha.pool.sks-keyservers.net:80'
+    keyserver: 'https://download.docker.com/linux/ubuntu/gpg'
 
 - name: Add docker-ce repo
   apt_repository:
@@ -24,3 +24,5 @@
   package: name={{ item }} state=latest
   with_items:
     - docker-ce
+    - docker-ce-cli
+    - containerd.io
