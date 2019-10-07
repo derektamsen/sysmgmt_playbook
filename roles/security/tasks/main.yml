@@ -12,7 +12,7 @@
 - name: Add tor repo gpg key
   apt_key:
     id: A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
-    keyserver: keys.gnupg.net
+    url: 'https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc'
 
 - name: Install tor repo
   apt_repository:
