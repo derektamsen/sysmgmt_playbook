@@ -83,4 +83,4 @@
   systemd:
     name: syncthing
     enabled: yes
-    user: yes
+    scope: user
