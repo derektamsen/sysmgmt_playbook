@@ -1,12 +1,6 @@
 ---
 # tasks file for homeconfig
 
-- name: Add derek to libvirt group
-  user:
-    name: derek
-    groups: libvirt
-    append: yes
-
 - name: Checkout oh-my-zsh
   become: yes
   become_user: derek
