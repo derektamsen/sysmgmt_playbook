@@ -1,10 +1,6 @@
 ---
 # tasks file for development
 
-- name: Install atom from https://atom.io
-  apt:
-    deb: 'https://atom.io/download/deb'
-
 - name: Import visualstudio code repo gpg key
   apt_key:
     id: BC528686B50D79E339D3721CEB3E94ADBE1229CF
@@ -28,6 +24,7 @@
 - name: Install Zeal PPA
   apt_repository:
     repo: 'ppa:zeal-developers/ppa'
+    codename: cosmic
 
 - name: Download and untar Postman
   unarchive:
