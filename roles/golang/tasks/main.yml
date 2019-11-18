@@ -26,9 +26,9 @@
 
 - name: Download golang
   get_url:
-    url: https://dl.google.com/go/go1.11.4.linux-armv6l.tar.gz
+    url: https://dl.google.com/go/go1.13.4.linux-armv6l.tar.gz
     dest: /usr/local/src/go/go.linux-armv6l.tar.gz
-    checksum: sha256:9f7a71d27fef69f654a93e265560c8d9db1a2ca3f1dcdbe5288c46facfde5821
+    checksum: sha256:9f76e6353c9ae2dcad1731b7239531eb8be2fe171f29f2a9c5040945a930fd41
 
 - name: Unarchive golang src
   unarchive:
