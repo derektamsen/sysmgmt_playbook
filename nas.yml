@@ -1,0 +1,12 @@
+---
+- name: systems for running nas services
+  hosts:
+    - nas
+  become: True
+
+  roles:
+    - base
+    - sshserver
+    - docker
+    - nas
+    - k3s

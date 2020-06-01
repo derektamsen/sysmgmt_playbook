@@ -1,4 +1,11 @@
 ---
 # handlers file for base
 - name: restart systemd-timesyncd
-  service: name=systemd-timesyncd state=restarted
+  service:
+    name: systemd-timesyncd
+    state: restarted
+
+- name: restart smartd
+  service:
+    name: smartd
+    state: restarted

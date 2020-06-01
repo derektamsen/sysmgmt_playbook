@@ -1,0 +1,7 @@
+---
+# handlers file for roles/k3s
+
+- name: restart ufw
+  service:
+    name: ufw
+    state: restarted

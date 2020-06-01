@@ -4,6 +4,9 @@ dockerhost01
 [laptops]
 derek-thinkpad
 
+[nas]
+nas02
+
 [retropies]
 retropie
 

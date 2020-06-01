@@ -1,0 +1,49 @@
+---
+# tasks file for roles/nas
+
+- name: Install packages for nas systems
+  package: name={{ item }} state=latest
+  with_items:
+    - zfsutils-linux
+
+- name: Creates "PATH" at top of cron
+  cron:
+    name: PATH
+    cron_file: zfsutils-linux
+    env: yes
+    user: root
+    job: '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin'
+
+- name: Manage scheduled zfs scrub
+  cron:
+    name: zfs scheduled scrub
+    cron_file: zfsutils-linux
+    minute: '24'
+    hour: '0'
+    day: '8-14'
+    month: '*'
+    weekday: '*'
+    user: root
+    job: if [ $(date +\%w) -eq 0 ] && [ -x /usr/lib/zfs-linux/scrub ]; then /usr/lib/zfs-linux/scrub; fi
+
+- name: Ensure zfs-load-module is enabled and running
+  systemd:
+    name: zfs-load-module
+    enabled: yes
+    state: started
+
+- name: Ensure zfs-mount is enabled and running
+  systemd:
+    name: zfs-mount
+    enabled: yes
+    state: started
+
+- name: Create media dataset (stores movies, tv, and music)
+  zfs:
+    name: tank/media
+    state: present
+
+- name: Create home dataset (stores user shares)
+  zfs:
+    name: tank/home
+    state: present

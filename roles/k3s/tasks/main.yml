@@ -1,0 +1,42 @@
+---
+# tasks file for roles/k3s
+
+- name: Ensure ufw allows ip forwarding
+  lineinfile:
+    path: /etc/default/ufw
+    regexp: '^DEFAULT_FORWARD_POLICY='
+    line: DEFAULT_FORWARD_POLICY="ACCEPT"
+  notify: restart ufw
+
+# iptables -I INPUT 1 -i cni0 -s 10.42.0.0/16 -j ACCEPT
+- name: Allow traffic on pod network
+  ufw:
+    rule: allow
+    direction: in
+    interface: cni0
+    from_ip: 10.42.0.0/16
+
+- name: Allow ufw http/s
+  ufw:
+    rule: allow
+    to_port: '80,443'
+    proto: tcp
+
+- name: Add k3s install script
+  copy:
+    src: "{{ role_path }}/files/k3s-install"
+    dest: /usr/local/bin/k3s-install
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Install k3s with docker support
+  command:
+    cmd: /usr/local/bin/k3s-install --docker
+    creates: /usr/local/bin/k3s
+
+- name: Ensure k3s is enabled and running
+  systemd:
+    name: k3s
+    enabled: yes
+    state: started

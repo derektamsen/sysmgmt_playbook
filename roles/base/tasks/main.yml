@@ -11,6 +11,7 @@
     - iotop
     - iftop
     - lm-sensors
+    - smartmontools
     - tmux
     - ufw
     - zsh
@@ -75,5 +76,21 @@
 - name: Ensure lm-sensors is enabled and running
   systemd:
     name: lm-sensors
+    enabled: yes
+    state: started
+
+- name: Create smartd configuration
+  template:
+    src: "{{ role_path }}/templates/smartd.conf.j2"
+    dest: /etc/smartd.conf
+    owner: root
+    group: root
+    mode: 0644
+    validate: smartd -q onecheck -c %s
+  notify: restart smartd
+
+- name: Ensure smartd is enabled and running
+  systemd:
+    name: smartd
     enabled: yes
     state: started
