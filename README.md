@@ -1,7 +1,7 @@
 Building a simple LAMP stack and deploying Application using Ansible Playbooks.
 -------------------------------------------
 
-These playbooks require Ansible 1.2.
+These playbooks require Ansible 2.9.
 
 These playbooks are meant to be a reference and starter's guide to building
 Ansible Playbooks. These playbooks were tested on CentOS 6.x so we recommend
@@ -29,12 +29,14 @@ database server.
 Development and Deploy Setup
 ----------------------------
 
-        pip install --user pipenv
-        pipenv install
-        pipenv shell
+        pip3 install --upgrade virtualenv
+        python3 -m venv venv
+        . venv/bin/activate
+        pip install -r requirements.txt
 
 Usage
 -----
+
 Install Ansible
 
         sudo apt-get install software-properties-common
