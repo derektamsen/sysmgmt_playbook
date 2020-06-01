@@ -9,7 +9,7 @@
 
 - name: Add i3 repo
   apt_repository:
-    repo: deb http://debian.sur5r.net/i3/ {{ ansible_distribution_release }} universe
+    repo: deb [arch=amd64] http://debian.sur5r.net/i3/ {{ ansible_distribution_release }} universe
     state: present
     filename: 'i3wm'
 
@@ -52,5 +52,3 @@
   - feh
   - thunar
   - scrot
-  - light-locker
-  - light-locker-settings

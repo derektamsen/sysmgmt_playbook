@@ -24,7 +24,7 @@
 - name: Install Zeal PPA
   apt_repository:
     repo: 'ppa:zeal-developers/ppa'
-    codename: cosmic
+    codename: eoan
 
 - name: Download and untar Postman
   unarchive:
