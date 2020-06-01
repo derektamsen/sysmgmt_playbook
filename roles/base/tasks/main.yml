@@ -10,6 +10,7 @@
     - htop
     - iotop
     - iftop
+    - lm-sensors
     - tmux
     - ufw
     - zsh
@@ -70,3 +71,9 @@
     state: "{{ item.state }}"
     key: "{{ item.key }}"
   with_items: "{{ ssh_authorized_keys }}"
+
+- name: Ensure lm-sensors is enabled and running
+  systemd:
+    name: lm-sensors
+    enabled: yes
+    state: started
