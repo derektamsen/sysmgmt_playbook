@@ -1,2 +1,5 @@
 ---
 # handlers file for productivity
+
+- name: update initramfs
+  command: sudo update-initramfs -u -k all

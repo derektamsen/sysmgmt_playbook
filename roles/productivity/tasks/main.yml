@@ -1,6 +1,18 @@
 ---
 # tasks file for productivity
 
+# fix varmilo keyboard fn key
+# https://help.ubuntu.com/community/AppleKeyboard#Change_Function_Key_behavior
+- name: Fix varmilo/apple fn key default
+  copy:
+    src: "{{ role_path }}/files/hid_apple.conf"
+    dest: /etc/modprobe.d/hid_apple.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - update initramfs
+
 - name: Import Google Chrome repo gpg key
   apt_key:
     id: 4CCA1EAF950CEE4AB83976DCA040830F7FAC5991
