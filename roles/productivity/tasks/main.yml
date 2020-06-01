@@ -59,8 +59,6 @@
   - autojump
   - vlc
   - yadm
-  - python-gtk2
-  - python-gpg
   - google-chrome-stable
   - syncthing
   - typora

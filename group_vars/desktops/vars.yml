@@ -1,4 +1,2 @@
 ---
 # Variables listed here are applicable to the desktops host group
-docker:
-  distro: disco

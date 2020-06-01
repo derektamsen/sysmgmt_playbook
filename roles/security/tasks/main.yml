@@ -16,7 +16,7 @@
 
 - name: Install tor repo
   apt_repository:
-    repo: deb https://deb.torproject.org/torproject.org {{ ansible_distribution_release }} main
+    repo: deb [arch=amd64] https://deb.torproject.org/torproject.org {{ ansible_distribution_release }} main
     state: present
     filename: tor
 
@@ -31,7 +31,7 @@
 
 - name: Install Signal repo
   apt_repository:
-    repo: deb [arch=amd64] https://updates.signal.org/desktop/apt artful main
+    repo: deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main
     state: present
     filename: signal
 

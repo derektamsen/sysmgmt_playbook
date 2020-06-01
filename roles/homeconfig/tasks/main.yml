@@ -41,16 +41,16 @@
 
 - name: Create yadm config dir
   file:
-    path: /home/derek/.yadm
+    path: /home/derek/.config/yadm
     state: directory
     owner: derek
     group: derek
-    mode: 0755
+    mode: 0700
 
-- name: Copy yadm config to /home/derek/.yadm/config
+- name: Copy yadm config to /home/derek/.config/yadm/config
   copy:
     src: "{{ role_path }}/files/yadm_config"
-    dest: /home/derek/.yadm/config
+    dest: /home/derek/.config/yadm/config
     owner: derek
     group: derek
     mode: 0644
