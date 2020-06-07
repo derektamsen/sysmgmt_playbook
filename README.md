@@ -60,4 +60,4 @@ List facts from host
 
 Create a new role playbook
 
-        ansible-galaxy init role/new-playbook-name
+        ansible-galaxy init roles/new-playbook-name
