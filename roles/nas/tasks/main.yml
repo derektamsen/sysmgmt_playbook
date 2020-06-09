@@ -47,3 +47,8 @@
   zfs:
     name: tank/home
     state: present
+
+- name: Create docker volumes dataset (stores docker volumes)
+  zfs:
+    name: tank/docker-volumes
+    state: present
