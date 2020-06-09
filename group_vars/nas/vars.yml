@@ -1,3 +1,12 @@
 ---
   # Variables listed here are applicable to the nas host group
   ufw_state: enabled
+
+  zfs:
+    datasets:
+      - name: tank/docker-volumes
+        state: present
+      - name: tank/home
+        state: present
+      - name: tank/media
+        state: present
