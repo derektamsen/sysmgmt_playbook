@@ -38,17 +38,8 @@
     enabled: yes
     state: started
 
-- name: Create media dataset (stores movies, tv, and music)
+- name: "Add zfs dataset {{ item.name }}"
   zfs:
-    name: tank/media
-    state: present
-
-- name: Create home dataset (stores user shares)
-  zfs:
-    name: tank/home
-    state: present
-
-- name: Create docker volumes dataset (stores docker volumes)
-  zfs:
-    name: tank/docker-volumes
-    state: present
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ zfs.datasets }}"
