@@ -32,7 +32,7 @@
 
 - name: Install k3s with docker support
   command:
-    cmd: /usr/local/bin/k3s-install --docker
+    cmd: /usr/local/bin/k3s-install --docker --secrets-encryption
     creates: /usr/local/bin/k3s
 
 - name: Ensure k3s is enabled and running
