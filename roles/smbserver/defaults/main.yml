@@ -1,0 +1,4 @@
+---
+# defaults file for roles/smbserver
+ufw_rules_allow:
+  - name: Samba

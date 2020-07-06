@@ -1,0 +1,30 @@
+---
+# tasks file for roles/smbserver
+- name: Install samba server packages
+  package: name={{ item }} state=latest
+  with_items:
+    - samba
+
+- name: Stop and disable netbios service
+  systemd:
+    name: nmbd
+    enabled: no
+    state: stopped
+
+- name: Start and enable smbd service
+  systemd:
+    name: smbd
+    daemon_reload: yes
+    enabled: yes
+    state: started
+
+- name: Template smb.conf
+  template:
+    src: "{{ role_path }}/templates/smb.conf.j2"
+    dest: /etc/samba/smb.conf
+    owner: root
+    group: root
+    mode: '0644'
+    validate: /bin/testparm -s %s
+    backup: yes
+  notify: restart smbd

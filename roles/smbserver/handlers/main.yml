@@ -1,0 +1,4 @@
+---
+# handlers file for roles/smbserver
+- name: restart smbd
+  service: name=smbd state=restarted
