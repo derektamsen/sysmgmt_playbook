@@ -5,7 +5,7 @@ dockerhost01
 derek-thinkpad
 
 [nas]
-nas02
+nas02.services
 
 [retropies]
 retropie
