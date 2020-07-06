@@ -9,4 +9,5 @@
     - sshserver
     - docker
     - nas
+    - smbserver
     - k3s
