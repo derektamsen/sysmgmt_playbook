@@ -1,0 +1,37 @@
+{%- for share, config in smbserver.shares|dictsort -%}
+[{{ share }}]
+  {% if config.comment is defined -%}
+    comment = {{ config.comment }}
+  {% endif %}
+  {%- if config.browseable is defined -%}
+    browseable = {{ config.browseable }}
+  {% endif %}
+  {%- if config.path is defined -%}
+    path = {{ config.path }}
+  {% endif %}
+  {%- if config.read_only is defined -%}
+    read only = {{ config.read_only }}
+  {% endif %}
+  {%- if config.valid_users is defined -%}
+    valid users = {{ config.valid_users }}
+  {% endif %}
+  {%- if config.public is defined -%}
+    public = {{ config.public }}
+  {% endif %}
+  {%- if config.writable is defined -%}
+    writable = {{ config.writable }}
+  {% endif %}
+  {%- if config.vfs_objects is defined -%}
+    vfs objects = {{ config.vfs_objects }}
+  {% endif %}
+  {%- if config.recycle_repository is defined -%}
+    recycle:repository = {{ config.recycle_repository }}
+  {% endif %}
+  {%- if config.recycle_keeptree is defined -%}
+    recycle:keeptree = {{ config.recycle_keeptree }}
+  {% endif %}
+  {%- if config.recycle_versions is defined -%}
+    recycle:versions = {{ config.recycle_versions }}
+  {% endif %}
+
+{% endfor %}
