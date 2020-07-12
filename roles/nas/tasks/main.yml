@@ -5,6 +5,14 @@
   package: name={{ item }} state=latest
   with_items:
     - zfsutils-linux
+    - avahi-daemon
+
+- name: Allow mdns ufw
+  ufw:
+    rule: allow
+    comment: mdns
+    port: '5353'
+    proto: udp
 
 - name: Creates "PATH" at top of cron
   cron:

@@ -1,3 +1,8 @@
 ---
 # Variables listed here are applicable to the printservers host group
 ufw_state: enabled
+
+ufw_rules_allow:
+  - name: Bonjour
+  - name: IPP
+  - name: OpenSSH

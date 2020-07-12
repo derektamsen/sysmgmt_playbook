@@ -12,16 +12,6 @@
     - git
     - bzr
 
-- name: Allow ufw avahi traffic for printer discovery
-  ufw:
-    rule: allow
-    name: Bonjour
-
-- name: Allow ufw ipp traffic
-  ufw:
-    rule: allow
-    name: IPP
-
 - name: Allow cloud-print-connector ufw
   ufw:
     rule: allow
