@@ -18,10 +18,29 @@
     enabled: yes
     state: started
 
+- name: Create smb conf.d include directory
+  file:
+    name: /etc/samba/smb.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
 - name: Template smb.conf
   template:
     src: "{{ role_path }}/templates/smb.conf.j2"
     dest: /etc/samba/smb.conf
+    owner: root
+    group: root
+    mode: '0644'
+    validate: /bin/testparm -s %s
+    backup: yes
+  notify: restart smbd
+
+- name: Template shares.conf
+  template:
+    src: "{{ role_path }}/templates/shares.conf.j2"
+    dest: /etc/samba/smb.conf.d/shares.conf
     owner: root
     group: root
     mode: '0644'

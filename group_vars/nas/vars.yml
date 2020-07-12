@@ -1,12 +1,35 @@
 ---
-  # Variables listed here are applicable to the nas host group
-  ufw_state: enabled
+# Variables listed here are applicable to the nas host group
+ufw_state: enabled
 
-  zfs:
-    datasets:
-      - name: tank/docker-volumes
-        state: present
-      - name: tank/home
-        state: present
-      - name: tank/media
-        state: present
+zfs:
+  datasets:
+    - name: tank/docker-volumes
+      state: present
+    - name: tank/home
+      state: present
+    - name: tank/media
+      state: present
+
+smbserver:
+  shares:
+    homes:
+      comment: Home Directories
+      browseable: 'no'
+      vfs_objects: recycle
+      recycle_repository: .recycle
+      recycle_keeptree: 'yes'
+      recycle_versions: 'yes'
+      read_only: 'no'
+      valid_users: '%S'
+      path: '/tank/home/%S'
+    media:
+      comment: Music, Movies, and TV
+      path: /tank/media
+      valid_users: derek
+      public: 'no'
+      writable: 'yes'
+      vfs_objects: recycle
+      recycle_repository: .recycle
+      recycle_keeptree: 'yes'
+      recycle_versions: 'yes'
