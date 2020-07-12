@@ -4,10 +4,11 @@ ufw_state: enabled
 
 user_groups_supplemental:
   media_users: {}
+  backup_users: {}
 
 users_supplemental:
   derek:
-    groups: '{{ users.derek.groups }}, media_users'
+    groups: '{{ users.derek.groups }}, media_users, backup_users'
 
 zfs:
   datasets:
@@ -16,6 +17,8 @@ zfs:
     - name: tank/home
       state: present
     - name: tank/media
+      state: present
+    - name: tank/backups
       state: present
 
 smbserver:
@@ -34,6 +37,16 @@ smbserver:
       comment: Music, Movies, and TV
       path: /tank/media
       valid_users: '@media_users'
+      public: 'no'
+      writable: 'yes'
+      vfs_objects: recycle
+      recycle_repository: .recycle
+      recycle_keeptree: 'yes'
+      recycle_versions: 'yes'
+    backups:
+      comment: System Backups
+      path: /tank/backups
+      valid_users: '@backup_users'
       public: 'no'
       writable: 'yes'
       vfs_objects: recycle
