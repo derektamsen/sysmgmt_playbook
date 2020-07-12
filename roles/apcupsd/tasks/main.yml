@@ -1,0 +1,23 @@
+---
+# tasks file for roles/apcupsd
+
+- name: Install packages for apcupsd
+  package: name={{ item }} state=latest
+  with_items:
+    - apcupsd
+
+- name: Template apcupsd.conf
+  template:
+    src: "{{ role_path }}/templates/apcupsd.conf.j2"
+    dest: /etc/apcupsd/apcupsd.conf
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  notify: restart apcupsd
+
+- name: Ensure apcupsd is enabled and running
+  systemd:
+    name: apcupsd
+    enabled: yes
+    state: started
