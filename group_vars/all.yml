@@ -1,16 +1,22 @@
 ---
 # Variables listed here are applicable to all host groups
 user_groups:
-  - name: ssh_users
+  ssh_users: {}
+
+user_groups_supplemental: {}
 
 users:
-  - name: derek
+  derek:
     comment: 'Derek Tamsen,,,'
     shell: /usr/bin/zsh
-    groups: "sudo, ssh_users"
+    groups: 'sudo, ssh_users'
     append: yes
 
+users_supplemental: {}
+
 ssh_authorized_keys:
-  - user: derek
+  derek:
     state: present
     key: "{{ lookup('file', 'roles/base/files/ssh_pub_keys_derek') }}"
+
+ssh_authorized_keys_supplemental: {}

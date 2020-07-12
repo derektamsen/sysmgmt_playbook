@@ -52,26 +52,26 @@
     name: "{{ item.name }}"
   with_items: "{{ ufw_rules_allow }}"
 
-- name: "Add group {{ item.name }}"
+- name: "Add group {{ item.key }}"
   group:
-    name: "{{ item.name }}"
-  with_items: "{{ user_groups }}"
+    name: "{{ item.key }}"
+  with_dict: "{{ user_groups | combine(user_groups_supplemental, recursive=True) }}"
 
-- name: "Add account for {{ item.name }}"
+- name: "Add account for {{ item.key }}"
   user:
-    name: "{{ item.name }}"
-    comment: "{{ item.comment }}"
-    shell: "{{ item.shell }}"
-    groups: "{{ item.groups }}"
-    append: "{{ item.append }}"
-  with_items: "{{ users }}"
+    name: "{{ item.key }}"
+    comment: "{{ item.value.comment }}"
+    shell: "{{ item.value.shell }}"
+    groups: "{{ item.value.groups }}"
+    append: "{{ item.value.append }}"
+  with_dict: "{{ users | combine(users_supplemental, recursive=True) }}"
 
-- name: "Set authorized keys for {{ item.user }}"
+- name: "Set authorized keys for {{ item.key }}"
   authorized_key:
-    user: "{{ item.user }}"
-    state: "{{ item.state }}"
-    key: "{{ item.key }}"
-  with_items: "{{ ssh_authorized_keys }}"
+    user: "{{ item.key }}"
+    state: "{{ item.value.state }}"
+    key: "{{ item.value.key }}"
+  with_dict: "{{ ssh_authorized_keys | combine(ssh_authorized_keys_supplemental, recursive=True) }}"
 
 - name: Ensure lm-sensors is enabled and running
   systemd:
