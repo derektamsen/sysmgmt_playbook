@@ -2,6 +2,13 @@
 # Variables listed here are applicable to the nas host group
 ufw_state: enabled
 
+user_groups_supplemental:
+  media_users: {}
+
+users_supplemental:
+  derek:
+    groups: '{{ users.derek.groups }}, media_users'
+
 zfs:
   datasets:
     - name: tank/docker-volumes
@@ -26,7 +33,7 @@ smbserver:
     media:
       comment: Music, Movies, and TV
       path: /tank/media
-      valid_users: derek
+      valid_users: '@media_users'
       public: 'no'
       writable: 'yes'
       vfs_objects: recycle
