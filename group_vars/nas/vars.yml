@@ -2,6 +2,10 @@
 # Variables listed here are applicable to the nas host group
 ufw_state: enabled
 
+ufw_rules_allow:
+  - name: OpenSSH
+  - name: Samba
+
 user_groups_supplemental:
   media_users: {}
   backup_users: {}
