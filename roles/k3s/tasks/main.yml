@@ -32,7 +32,7 @@
 
 - name: Install k3s with docker support
   command:
-    cmd: /usr/local/bin/k3s-install --docker --secrets-encryption
+    cmd: /usr/local/bin/k3s-install --disable servicelb --docker --secrets-encryption
     creates: /usr/local/bin/k3s
 
 - name: Ensure k3s is enabled and running
@@ -40,3 +40,11 @@
     name: k3s
     enabled: yes
     state: started
+
+- name: Manage k3s autodeployed k8s manifests
+  copy:
+    src: "{{ role_path }}/files/manifests/"
+    dest: /var/lib/rancher/k3s/server/manifests
+    owner: root
+    group: root
+    mode: 0600
