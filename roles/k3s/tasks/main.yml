@@ -32,7 +32,7 @@
 
 - name: Install k3s with docker support
   command:
-    cmd: /usr/local/bin/k3s-install --disable servicelb --docker --secrets-encryption
+    cmd: /usr/local/bin/k3s-install --disable servicelb --docker --secrets-encryption --flannel-backend host-gw
     creates: /usr/local/bin/k3s
 
 - name: Ensure k3s is enabled and running
