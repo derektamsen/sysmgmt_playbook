@@ -44,15 +44,9 @@
   package: name={{ item }} state=latest
   with_items:
     - vim
-    - exfat-fuse
-    - exfat-utils
     - build-essential
-    - sshfs
-    - zeal
-    - gparted
-    - exuberant-ctags
     - tig
     - ipcalc
     - whois
     - code
-    - xterm
+    - gh
