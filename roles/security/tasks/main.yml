@@ -5,10 +5,6 @@
   apt_repository:
     repo: 'ppa:yubico/stable'
 
-- name: Install keybase from https://keybase.io
-  apt:
-    deb: 'https://prerelease.keybase.io/keybase_amd64.deb'
-
 - name: Add tor repo gpg key
   apt_key:
     id: A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
