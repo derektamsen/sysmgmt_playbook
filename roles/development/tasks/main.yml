@@ -25,21 +25,6 @@
     state: present
     filename: 'gh'
 
-- name: Download and untar Postman
-  unarchive:
-    src: "https://dl.pstmn.io/download/latest/linux64"
-    dest: /opt
-    owner: root
-    group: root
-    remote_src: yes
-    creates: /opt/Postman/Postman
-
-- name: Link Postman /usr/local/bin/postman
-  file:
-    src: /opt/Postman/Postman
-    dest: /usr/local/bin/postman
-    state: link
-
 - name: Install development packages
   package: name={{ item }} state=latest
   with_items:
