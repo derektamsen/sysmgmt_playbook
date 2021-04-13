@@ -13,6 +13,18 @@
     state: present
     filename: 'vscode'
 
+- name: Import github gh repo gpg key
+  apt_key:
+    id: C99B11DEB97541F0
+    keyserver: keyserver.ubuntu.com
+    state: present
+
+- name: Add github gh repo
+  apt_repository:
+    repo: deb https://cli.github.com/packages focal main
+    state: present
+    filename: 'gh'
+
 - name: Download and untar Postman
   unarchive:
     src: "https://dl.pstmn.io/download/latest/linux64"
