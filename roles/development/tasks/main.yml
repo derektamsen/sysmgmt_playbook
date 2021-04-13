@@ -13,19 +13,6 @@
     state: present
     filename: 'vscode'
 
-- name: Copy tldr bash script to /usr/local/bin
-  copy:
-    src: "{{ role_path }}/files/tldr"
-    dest: /usr/local/bin/tldr
-    owner: root
-    group: root
-    mode: 0755
-
-- name: Install Zeal PPA
-  apt_repository:
-    repo: 'ppa:zeal-developers/ppa'
-    codename: eoan
-
 - name: Download and untar Postman
   unarchive:
     src: "https://dl.pstmn.io/download/latest/linux64"
