@@ -11,7 +11,6 @@
     - base
     - security
     - backup
-    - windowmanager-i3
     - productivity
     - development
     - docker
