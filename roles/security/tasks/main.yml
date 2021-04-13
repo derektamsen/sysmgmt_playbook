@@ -5,32 +5,6 @@
   apt_repository:
     repo: 'ppa:yubico/stable'
 
-- name: Add tor repo gpg key
-  apt_key:
-    id: A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
-    url: 'https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc'
-
-- name: Install tor repo
-  apt_repository:
-    repo: deb [arch=amd64] https://deb.torproject.org/torproject.org {{ ansible_distribution_release }} main
-    state: present
-    filename: tor
-
-- name: Install torbrowser-launcher ppa
-  apt_repository:
-    repo: 'ppa:micahflee/ppa'
-
-- name: Add Signal repo gpg key
-  apt_key:
-    id: DBA36B5181D0C816F630E889D980A17457F6FB06
-    keyserver: keys.gnupg.net
-
-- name: Install Signal repo
-  apt_repository:
-    repo: deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main
-    state: present
-    filename: signal
-
 - name: Install security packages
   package: name={{ item }} state=latest
   with_items:
@@ -39,13 +13,6 @@
     - scdaemon
     - gnupg2
     - hopenpgp-tools
-    - pass
     - yubioath-desktop
     - yubikey-personalization-gui
     - yubikey-manager-qt
-    - tor
-    - torbrowser-launcher
-    - onionshare
-    - deb.torproject.org-keyring
-    - network-manager-openvpn-gnome
-    - signal-desktop
