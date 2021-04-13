@@ -15,4 +15,4 @@
     - hopenpgp-tools
     - yubioath-desktop
     - yubikey-personalization-gui
-    - yubikey-manager-qt
+    - yubikey-manager
