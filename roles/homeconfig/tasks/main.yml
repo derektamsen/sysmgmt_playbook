@@ -31,6 +31,26 @@
     depth: 1
     umask: '0022'
 
+- name: Checkout spaceship-prompt
+  become: yes
+  become_user: derek
+  git:
+    repo: 'https://github.com/denysdovhan/spaceship-prompt.git'
+    dest: /home/derek/.oh-my-zsh/custom/themes/spaceship-prompt
+    update: no
+    depth: 1
+    umask: '0022'
+
+- name: Link spaceship prompt to omz themes
+  become: yes
+  become_user: derek
+  file:
+    src: /home/derek/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme
+    dest: /home/derek/.oh-my-zsh/custom/themes/spaceship.zsh-theme
+    owner: derek
+    group: derek
+    state: link
+
 - name: Create ~/bin dir
   file:
     path: /home/derek/bin
