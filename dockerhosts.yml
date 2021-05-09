@@ -8,5 +8,4 @@
     - base
     - sshserver
     - docker
-    - docker-services
     - yubico-2fa

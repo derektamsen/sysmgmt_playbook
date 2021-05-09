@@ -12,14 +12,6 @@
     state: present
     filename: docker
 
-- name: Install docker-compose from github
-  get_url:
-    url: https://github.com/docker/compose/releases/download/1.29.0/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}
-    dest: /usr/local/bin/docker-compose
-    owner: root
-    group: root
-    mode: 0755
-
 - name: Install docker packages
   package: name={{ item }} state=latest
   with_items:

@@ -67,14 +67,6 @@
     group: derek
     mode: 0700
 
-- name: Copy yadm config to /home/derek/.config/yadm/config
-  copy:
-    src: "{{ role_path }}/files/yadm_config"
-    dest: /home/derek/.config/yadm/config
-    owner: derek
-    group: derek
-    mode: 0644
-
 - name: Create Development dir
   file:
     path: /home/derek/Development
