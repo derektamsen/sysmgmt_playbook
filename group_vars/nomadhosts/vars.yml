@@ -1,4 +1,6 @@
 ---
 # Variables listed here are applicable to the docker host group
+ufw_state: enabled
+
 ufw_rules_allow:
   - name: OpenSSH
