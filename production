@@ -7,6 +7,9 @@ derek-t460
 [nas]
 nas02.services
 
+[nomadhosts]
+nomad01
+
 [retropies]
 retropie
 

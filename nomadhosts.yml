@@ -1,7 +1,7 @@
 ---
-- name: systems for running docker containers
+- name: systems for running docker containers with nomad
   hosts:
-    - dockerhosts
+    - nomadhosts
   become: True
 
   roles:

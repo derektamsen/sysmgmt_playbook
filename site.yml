@@ -8,3 +8,4 @@
 - import_playbook: retropies.yml
 - import_playbook: workstations.yml
 - import_playbook: unificontrollers.yml
+- import_playbook: nomadhosts.yml
