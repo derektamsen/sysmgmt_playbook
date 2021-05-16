@@ -12,6 +12,6 @@ additional_repo_keys_supplemental:
     state: present
 
 additional_packages_supplemental:
-  docker-ce: "latest"
-  docker-ce-cli: "latest"
-  "containerd.io": "latest"
+  docker-ce: latest
+  docker-ce-cli: latest
+  "containerd.io": latest

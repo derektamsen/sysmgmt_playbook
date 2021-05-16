@@ -16,5 +16,23 @@ additional_repos_supplemental:
     repo: deb http://deb.debian.org/debian buster-backports main
     state: present
 
-additional_packages_supplemental:
-  openssh-server: "latest"
+additional_repo_keys_supplemental:
+  debian_archive_stretch:
+    key_id: E0B11894F66AEC98
+    keyserver: keyserver.ubuntu.com
+    state: present
+  debian_archive_buster:
+    key_id: DC30D7C23CBBABEE
+    keyserver: keyserver.ubuntu.com
+    state: present
+
+additional_packages_apt_supplemental:
+  openssh-client:
+    state: latest
+    release: buster-backports
+  openssh-sftp-server:
+    state: latest
+    release: buster-backports
+  openssh-server:
+    state: latest
+    release: buster-backports

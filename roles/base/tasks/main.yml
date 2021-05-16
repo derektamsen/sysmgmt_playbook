@@ -55,6 +55,7 @@
     user: "{{ item.key }}"
     state: "{{ item.value.state }}"
     key: "{{ item.value.key }}"
+    exclusive: "{{ item.value.exclusive }}"
   with_dict: "{{ ssh_authorized_keys | combine(ssh_authorized_keys_supplemental, recursive=True) }}"
 
 - name: Ensure lm-sensors is enabled and running
@@ -81,3 +82,10 @@
     name: "{{ item.key }}"
     state: "{{ item.value }}"
   with_dict: "{{ additional_packages | combine(additional_packages_supplemental, recursive=True) }}"
+
+- name: Add additional apt packages
+  apt:
+    name: "{{ item.key }}"
+    state: "{{ item.value.state }}"
+    default_release: "{{ item.value.release }}"
+  with_dict: "{{ additional_packages_apt | combine(additional_packages_apt_supplemental, recursive=True) }}"
