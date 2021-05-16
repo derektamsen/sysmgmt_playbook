@@ -2,3 +2,20 @@
 # Variables listed here are applicable to the docker host group
 ufw_rules_allow:
   - name: OpenSSH
+
+additional_repos_supplemental:
+  docker:
+    repo: deb [arch=armhf] https://download.docker.com/linux/debian buster stable
+    state: present
+
+additional_repo_keys_supplemental:
+  docker:
+    key_id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+    keyserver: https://download.docker.com/linux/debian/gpg
+    state: present
+
+additional_packages_supplemental:
+  docker-ce: "latest"
+  docker-ce-cli: "latest"
+  "containerd.io": "latest"
+  "openssh-server": "latest"

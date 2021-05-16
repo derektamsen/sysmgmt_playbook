@@ -2,25 +2,10 @@
 # tasks file for base
 
 - name: Install base packages
-  package: name={{ item }} state=latest
-  with_items:
-    - unattended-upgrades
-    - apt-transport-https
-    - ca-certificates
-    - htop
-    - iotop
-    - iftop
-    - lm-sensors
-    - tmux
-    - ufw
-    - zsh
-
-- name: Remove unnecessary packages
-  package: name={{ item }} state=absent
-  with_items:
-    - unity-webapps-common
-    - whoopsie
-    - apport
+  package:
+    name: "{{ item.key }}"
+    state: "{{ item.value }}"
+  with_dict: "{{ base_packages | combine(base_packages_supplemental, recursive=True)}}"
 
 - name: Configure unattended-upgrades
   debconf:
@@ -77,3 +62,22 @@
     name: lm-sensors
     enabled: yes
     state: started
+
+- name: Install {{ item.key }} repo gpg key
+  apt_key:
+    id: "{{ item.value.key_id }}"
+    keyserver: "{{ item.value.keyserver }}"
+  with_dict: "{{ additional_repo_keys | combine(additional_repo_keys_supplemental, recursive=True) }}"
+
+- name: Add {{ item.key }} repo
+  apt_repository:
+    repo: "{{ item.value.repo }}"
+    state: "{{ item.value.state }}"
+    filename: "{{ item.key }}"
+  with_dict: "{{ additional_repos | combine(additional_repos_supplemental, recursive=True) }}"
+
+- name: Add additional packages
+  package:
+    name: "{{ item.key }}"
+    state: "{{ item.value }}"
+  with_dict: "{{ additional_packages | combine(additional_packages_supplemental, recursive=True) }}"

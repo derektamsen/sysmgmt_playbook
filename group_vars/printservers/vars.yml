@@ -1,8 +1,20 @@
 ---
 # Variables listed here are applicable to the printservers host group
+base_packages_supplemental:
+  debian-keyring: latest
+  debian-archive-keyring: latest
+
 ufw_state: enabled
 
 ufw_rules_allow:
   - name: Bonjour
   - name: IPP
   - name: OpenSSH
+
+additional_repos_supplemental:
+  backports:
+    repo: deb http://deb.debian.org/debian buster-backports main
+    state: present
+
+additional_packages_supplemental:
+  openssh-server: "latest"

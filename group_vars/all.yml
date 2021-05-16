@@ -20,3 +20,28 @@ ssh_authorized_keys:
     key: "{{ lookup('file', 'roles/base/files/ssh_pub_keys_derek') }}"
 
 ssh_authorized_keys_supplemental: {}
+
+base_packages:
+  unattended-upgrades: latest
+  apt-transport-https: latest
+  ca-certificates: latest
+  htop: latest
+  iotop: latest
+  iftop: latest
+  lm-sensors: latest
+  tmux: latest
+  ufw: latest
+  zsh: latest
+  unity-webapps-common: absent
+  whoopsie: absent
+  apport: absent
+base_packages_supplemental: {}
+
+additional_repos: {}
+additional_repos_supplemental: {}
+
+additional_repo_keys: {}
+additional_repo_keys_supplemental: {}
+
+additional_packages: {}
+additional_packages_supplemental: {}

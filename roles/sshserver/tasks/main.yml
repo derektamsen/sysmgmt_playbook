@@ -1,10 +1,5 @@
 ---
 # tasks file for sshserver
-- name: Install ssh server packages
-  package: name={{ item }} state=latest
-  with_items:
-    - openssh-server
-
 - name: Enable ssh service
   systemd:
     name: ssh

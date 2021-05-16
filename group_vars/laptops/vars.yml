@@ -2,3 +2,19 @@
 # Variables listed here are applicable to the laptops host group
 windowsmanageri3:
   console_font_size: "16x32"
+
+additional_repos:
+  docker:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+    state: present
+
+additional_repo_keys_supplemental:
+  docker:
+    key_id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+    keyserver: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+additional_packages_supplemental:
+  docker-ce: "latest"
+  docker-ce-cli: "latest"
+  "containerd.io": "latest"
