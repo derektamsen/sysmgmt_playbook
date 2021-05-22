@@ -1,9 +1,0 @@
----
-- name: systems for running docker containers
-  hosts:
-    - dockerhosts
-  become: True
-
-  roles:
-    - base
-    - sshserver

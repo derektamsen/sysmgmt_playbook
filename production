@@ -1,23 +1,11 @@
-[dockerhosts]
-dockerhost01
-
 [laptops]
 derek-t460
 
-[nas]
-nas02.services
-
 [nomadhosts]
-nomad01
-
-[retropies]
-retropie
+server01
 
 [desktops]
 desktop
 
 [printservers]
 officeprinter01
-
-[unificontrollers]
-unifi01

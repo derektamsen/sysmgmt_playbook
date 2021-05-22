@@ -1,0 +1,7 @@
+---
+# tasks file for nomad
+- name: Download nomad
+  ansible.builtin.unarchive:
+    src: https://releases.hashicorp.com/nomad/1.0.5/nomad_1.0.5_linux_arm.zip
+    dest: /usr/local/bin
+    remote_src: yes

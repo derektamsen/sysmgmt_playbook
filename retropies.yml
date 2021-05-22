@@ -1,9 +1,0 @@
----
-- name: systems for running retropie
-  hosts:
-    - retropies
-  remote_user: pi
-  become: True
-
-  roles:
-    - base

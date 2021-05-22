@@ -1,11 +1,7 @@
 ---
 # include role playbooks
 - import_playbook: desktops.yml
-- import_playbook: dockerhosts.yml
 - import_playbook: laptops.yml
-- import_playbook: nas.yml
 - import_playbook: printservers.yml
-- import_playbook: retropies.yml
 - import_playbook: workstations.yml
-- import_playbook: unificontrollers.yml
 - import_playbook: nomadhosts.yml
