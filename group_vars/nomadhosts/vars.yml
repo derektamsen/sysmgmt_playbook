@@ -54,3 +54,7 @@ nomad:
     datacenter: dc1
     data_dir: /opt/nomad
     expect: 1
+
+consul:
+  url: https://releases.hashicorp.com/consul/1.9.5/consul_1.9.5_linux_armhfv6.zip
+  checksum: sha256:49744b92cbedd1a76f03bda87ac97bf2ef4df7487b4860a5ba6f5ab1032101a6

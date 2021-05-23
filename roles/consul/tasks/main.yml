@@ -1,0 +1,108 @@
+---
+# tasks file for consul
+
+- name: Add consul group
+  group:
+    name: consul
+    system: yes
+  register: consul_group
+
+- name: Add consul user
+  user:
+    name: consul
+    home: /etc/consul.d
+    create_home: no
+    shell: /bin/false
+    group: '{{ consul_group.name }}'
+    system: yes
+  register: consul_user
+
+- name: Create /opt/consul
+  file:
+    path: /opt/consul
+    state: directory
+    owner: '{{ consul_user.name }}'
+    group: '{{ consul_group.name }}'
+    mode: 0755
+  register: consul_dir
+
+- name: Create /opt/consul/src
+  file:
+    path: '{{ consul_dir.path }}/src'
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  register: consul_src_dir
+
+- name: Create /etc/consul.d
+  file:
+    path: /etc/consul.d
+    state: directory
+    owner: root
+    group: '{{ consul_group.name }}'
+    mode: 0750
+  register: consul_etc_dir
+
+- name: Download consul
+  get_url:
+    url: '{{ consul.url }}'
+    dest: '{{ consul_src_dir.path }}/consul.zip'
+    checksum: '{{ consul.checksum }}'
+  register: consul_zip
+
+- name: Install consul
+  unarchive:
+    src: '{{ consul_zip.dest }}'
+    dest: /usr/local/bin
+    owner: root
+    group: root
+    mode: 0755
+    remote_src: yes
+  register: consul_archive
+
+- name: Add consul unit file
+  template:
+    src: '{{ role_path }}/templates/consul.service.j2'
+    dest: /etc/systemd/system/consul.service
+    owner: root
+    group: root
+    mode: 0644
+  # notify:
+  #   - restart consul
+
+# - name: Configure consul common
+#   template:
+#     src: '{{ role_path }}/templates/consul.hcl.j2'
+#     dest: '{{ consul_etc_dir.path }}/consul.hcl'
+#     owner: root
+#     group: root
+#     mode: 0600
+#   notify:
+#     - restart consul
+
+# - name: Configure consul server
+#   template:
+#     src: '{{ role_path }}/templates/server.hcl.j2'
+#     dest: '{{ consul_etc_dir.path }}/server.hcl'
+#     owner: root
+#     group: root
+#     mode: 0600
+#   notify:
+#     - restart consul
+
+# - name: Configure consul client
+#   template:
+#     src: '{{ role_path }}/templates/client.hcl.j2'
+#     dest: '{{ consul_etc_dir.path }}/client.hcl'
+#     owner: root
+#     group: root
+#     mode: 0600
+#   notify:
+#     - restart consul
+
+# - name: Ensure consul is enabled and running
+#   systemd:
+#     name: consul
+#     enabled: yes
+#     state: started
