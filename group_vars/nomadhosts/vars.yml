@@ -46,3 +46,11 @@ additional_packages_apt_supplemental:
   openssh-server:
     state: latest
     release: buster-backports
+
+nomad:
+  url: https://releases.hashicorp.com/nomad/1.1.0/nomad_1.1.0_linux_arm.zip
+  checksum: sha256:85dc79b5f9c46f68adad1f7ee2824d37b785861ad2ac03f67358bbab3bff6a34
+  config:
+    datacenter: dc1
+    data_dir: /opt/nomad
+    expect: 1
