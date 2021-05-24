@@ -1,0 +1,97 @@
+---
+# tasks file for vault
+
+- name: Add vault group
+  group:
+    name: vault
+    system: yes
+  register: vault_group
+
+- name: Add vault user
+  user:
+    name: vault
+    home: /etc/vault.d
+    create_home: no
+    shell: /bin/false
+    group: '{{ vault_group.name }}'
+    system: yes
+  register: vault_user
+
+- name: Create /opt/vault
+  file:
+    path: /opt/vault
+    state: directory
+    owner: '{{ vault_user.name }}'
+    group: '{{ vault_group.name }}'
+    mode: 0755
+  register: vault_dir
+
+- name: Create /opt/vault/src
+  file:
+    path: '{{ vault_dir.path }}/src'
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  register: vault_src_dir
+
+- name: Create /opt/vault/data
+  file:
+    path: '{{ vault_dir.path }}/data'
+    state: directory
+    owner: '{{ vault_user.name }}'
+    group: '{{ vault_group.name }}'
+    mode: 0750
+  register: vault_data_dir
+
+- name: Create /etc/vault.d
+  file:
+    path: /etc/vault.d
+    state: directory
+    owner: '{{ vault_user.name }}'
+    group: '{{ vault_group.name }}'
+    mode: 0755
+  register: vault_etc_dir
+
+- name: Download vault
+  get_url:
+    url: '{{ vault.url }}'
+    dest: '{{ vault_src_dir.path }}/vault.zip'
+    checksum: '{{ vault.checksum }}'
+  register: vault_zip
+
+- name: Install vault
+  unarchive:
+    src: '{{ vault_zip.dest }}'
+    dest: /usr/local/bin
+    owner: root
+    group: root
+    mode: 0755
+    remote_src: yes
+  register: vault_archive
+
+- name: Add vault unit file
+  template:
+    src: '{{ role_path }}/templates/vault.service.j2'
+    dest: /etc/systemd/system/vault.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart vault
+
+- name: Configure vault
+  template:
+    src: '{{ role_path }}/templates/vault.hcl.j2'
+    dest: '{{ vault_etc_dir.path }}/vault.hcl'
+    owner: '{{ vault_user.name }}'
+    group: '{{ vault_group.name }}'
+    mode: 0640
+  notify:
+    - restart vault
+
+# - name: Ensure vault is enabled and running
+#   systemd:
+#     name: vault
+#     enabled: yes
+#     state: started

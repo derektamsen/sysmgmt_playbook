@@ -39,9 +39,9 @@
   file:
     path: /etc/consul.d
     state: directory
-    owner: root
+    owner: '{{ consul_user.name }}'
     group: '{{ consul_group.name }}'
-    mode: 0750
+    mode: 0755
   register: consul_etc_dir
 
 - name: Download consul
