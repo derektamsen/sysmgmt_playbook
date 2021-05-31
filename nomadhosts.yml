@@ -2,11 +2,10 @@
 - name: systems for running docker containers with nomad
   hosts:
     - nomadhosts
-  become: True
+  become: true
 
   roles:
     - base
     - sshserver
-    - vault
     - consul
     - nomad

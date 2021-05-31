@@ -4,9 +4,11 @@ api_addr = "https://{{ ansible_default_ipv4.address }}:8200"
 cluster_addr = "http://{{ ansible_default_ipv4.address }}:8201"
 
 listener "tcp" {
-  address       = "0.0.0.0:8200"
-  tls_cert_file = "/path/to/fullchain.pem"
-  tls_key_file  = "/path/to/privkey.pem"
+  address       = "[::]:8200"
+  tls_cert_file = "{{ vault.config.tcp_cert }}"
+  tls_key_file  = "{{ vault.config.tcp_key }}"
+  tls_min_version = "tls13"
+  tls_prefer_server_cipher_suites = "true"
 }
 
 storage "raft" {

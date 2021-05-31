@@ -61,3 +61,15 @@ List facts from host
 Create a new role playbook
 
         ansible-galaxy init roles/new-playbook-name
+
+View ansible encrypted files
+
+        ansible-vault view group_vars/<role>/<file>
+
+View ansible encrypted variables
+
+        ansible localhost -m ansible.builtin.debug -a var="<var_to_view>" -e "@path/to/file.yml"
+
+Encrypt ansible variable
+
+        ansible-vault encrypt_string

@@ -5,7 +5,7 @@
     - laptops
   connection: local
   # remote_user: root
-  become: True
+  become: true
 
   roles:
     - base

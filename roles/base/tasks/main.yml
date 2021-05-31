@@ -5,7 +5,7 @@
   package:
     name: "{{ item.key }}"
     state: "{{ item.value }}"
-  with_dict: "{{ base_packages | combine(base_packages_supplemental, recursive=True)}}"
+  with_dict: "{{ base_packages | combine(base_packages_supplemental, recursive=true) }}"
 
 - name: Configure unattended-upgrades
   debconf:
@@ -29,17 +29,25 @@
   ufw:
     state: "{{ ufw_state }}"
 
-- name: Enable UFW firewall rules only if they are specified
-  when: ufw_rules_allow is defined
+- name: Enable named UFW firewall rules
+  when: ufw_rules_named is defined
   ufw:
-    rule: allow
+    rule: "{{ item.rule | default('allow') }}"
     name: "{{ item.name }}"
-  with_items: "{{ ufw_rules_allow }}"
+  with_items: "{{ ufw_rules_named }}"
+
+- name: Enable port UFW firewall rules
+  when: ufw_rules_ports is defined
+  ufw:
+    rule: "{{ item.rule | default('allow') }}"
+    port: "{{ item.port }}"
+    proto: "{{ item.proto | default('tcp') }}"
+  with_items: "{{ ufw_rules_ports }}"
 
 - name: "Add group {{ item.key }}"
   group:
     name: "{{ item.key }}"
-  with_dict: "{{ user_groups | combine(user_groups_supplemental, recursive=True) }}"
+  with_dict: "{{ user_groups | combine(user_groups_supplemental, recursive=true) }}"
 
 - name: "Add account for {{ item.key }}"
   user:
@@ -48,15 +56,15 @@
     shell: "{{ item.value.shell }}"
     groups: "{{ item.value.groups }}"
     append: "{{ item.value.append }}"
-  with_dict: "{{ users | combine(users_supplemental, recursive=True) }}"
+  with_dict: "{{ users | combine(users_supplemental, recursive=true) }}"
 
 - name: "Set authorized keys for {{ item.key }}"
   authorized_key:
     user: "{{ item.key }}"
-    state: "{{ item.value.state }}"
+    state: "{{ item.value.state | default('present') }}"
     key: "{{ item.value.key }}"
-    exclusive: "{{ item.value.exclusive }}"
-  with_dict: "{{ ssh_authorized_keys | combine(ssh_authorized_keys_supplemental, recursive=True) }}"
+    exclusive: "{{ item.value.exclusive | default(true) }}"
+  with_dict: "{{ ssh_authorized_keys | combine(ssh_authorized_keys_supplemental, recursive=true) }}"
 
 - name: Ensure lm-sensors is enabled and running
   systemd:
@@ -68,24 +76,33 @@
   apt_key:
     id: "{{ item.value.key_id }}"
     keyserver: "{{ item.value.keyserver }}"
-  with_dict: "{{ additional_repo_keys | combine(additional_repo_keys_supplemental, recursive=True) }}"
+    state: "{{ item.value.state | default('present') }}"
+  with_dict: "{{ additional_repo_keys | combine(additional_repo_keys_supplemental, recursive=true) }}"
 
 - name: Add {{ item.key }} repo
   apt_repository:
     repo: "{{ item.value.repo }}"
-    state: "{{ item.value.state }}"
+    state: "{{ item.value.state | default('present') }}"
     filename: "{{ item.key }}"
-  with_dict: "{{ additional_repos | combine(additional_repos_supplemental, recursive=True) }}"
+  with_dict: "{{ additional_repos | combine(additional_repos_supplemental, recursive=true) }}"
 
 - name: Add additional packages
   package:
     name: "{{ item.key }}"
-    state: "{{ item.value }}"
-  with_dict: "{{ additional_packages | combine(additional_packages_supplemental, recursive=True) }}"
+    state: "{{ item.value | default('latest') }}"
+  with_dict: "{{ additional_packages | combine(additional_packages_supplemental, recursive=true) }}"
 
 - name: Add additional apt packages
   apt:
     name: "{{ item.key }}"
-    state: "{{ item.value.state }}"
+    state: "{{ item.value.state | default('latest') }}"
     default_release: "{{ item.value.release }}"
-  with_dict: "{{ additional_packages_apt | combine(additional_packages_apt_supplemental, recursive=True) }}"
+  with_dict: "{{ additional_packages_apt | combine(additional_packages_apt_supplemental, recursive=true) }}"
+
+- name: Add additional snaps
+  snap:
+    name: "{{ item.key }}"
+    state: "{{ item.value.state | default('present')}}"
+    channel: "{{ item.value.channel | default('stable') }}"
+    classic: "{{ item.value.classic | default(false) }}"
+  with_dict: "{{ additional_snaps | combine(additional_snaps_supplemental, recursive=true) }}"

@@ -5,3 +5,4 @@
 - import_playbook: printservers.yml
 - import_playbook: workstations.yml
 - import_playbook: nomadhosts.yml
+- import_playbook: vaulthosts.yml

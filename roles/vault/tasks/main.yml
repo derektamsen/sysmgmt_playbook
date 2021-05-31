@@ -90,8 +90,8 @@
   notify:
     - restart vault
 
-# - name: Ensure vault is enabled and running
-#   systemd:
-#     name: vault
-#     enabled: yes
-#     state: started
+- name: Ensure vault is enabled and running
+  systemd:
+    name: vault
+    enabled: yes
+    state: started

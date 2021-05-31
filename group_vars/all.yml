@@ -16,8 +16,6 @@ users_supplemental: {}
 
 ssh_authorized_keys:
   derek:
-    state: present
-    exclusive: true
     key: |
       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILh1qYXY5PabkwdddRbt5SeI40IZXe+7KBwU8DgKs8D5
       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAEpZ9Mx18QSB0DYxFdpIh31LTxB7iMzNH5a1UlqGHvK
@@ -53,3 +51,6 @@ additional_packages_supplemental: {}
 
 additional_packages_apt: {}
 additional_packages_apt_supplemental: {}
+
+additional_snaps: {}
+additional_snaps_supplemental: {}

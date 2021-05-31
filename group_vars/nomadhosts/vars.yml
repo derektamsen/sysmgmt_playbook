@@ -1,50 +1,42 @@
 ---
 # Variables listed here are applicable to the docker host group
 base_packages_supplemental:
-  debian-keyring: latest
-  debian-archive-keyring: latest
+  debian-keyring:
+  debian-archive-keyring:
 
 ufw_state: enabled
 
-ufw_rules_allow:
+ufw_rules_named:
   - name: OpenSSH
 
 additional_repos_supplemental:
   docker:
     repo: deb [arch=armhf] https://download.docker.com/linux/debian buster stable
-    state: present
   backports:
     repo: deb http://deb.debian.org/debian buster-backports main
-    state: present
 
 additional_repo_keys_supplemental:
   docker:
     key_id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
     keyserver: https://download.docker.com/linux/debian/gpg
-    state: present
   debian_archive_stretch:
     key_id: E0B11894F66AEC98
     keyserver: keyserver.ubuntu.com
-    state: present
   debian_archive_buster:
     key_id: DC30D7C23CBBABEE
     keyserver: keyserver.ubuntu.com
-    state: present
 
 additional_packages_supplemental:
-  docker-ce: latest
-  docker-ce-cli: latest
-  "containerd.io": latest
+  docker-ce:
+  docker-ce-cli:
+  "containerd.io":
 
 additional_packages_apt_supplemental:
   openssh-client:
-    state: latest
     release: buster-backports
   openssh-sftp-server:
-    state: latest
     release: buster-backports
   openssh-server:
-    state: latest
     release: buster-backports
 
 nomad:
@@ -58,7 +50,3 @@ nomad:
 consul:
   url: https://releases.hashicorp.com/consul/1.9.5/consul_1.9.5_linux_armhfv6.zip
   checksum: sha256:49744b92cbedd1a76f03bda87ac97bf2ef4df7487b4860a5ba6f5ab1032101a6
-
-vault:
-  url: https://releases.hashicorp.com/vault/1.7.2/vault_1.7.2_linux_arm.zip
-  checksum: sha256:38782995fecb298f4a6c55e5568a7ea54a8516a7ea4ebaf25bb7caf0f6111c4a

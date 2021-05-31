@@ -1,0 +1,66 @@
+---
+# Variables listed here are applicable to the docker host group
+base_packages_supplemental:
+  debian-keyring: latest
+  debian-archive-keyring: latest
+
+ufw_state: enabled
+
+ufw_rules_named:
+  - name: OpenSSH
+
+ufw_rules_ports:
+  - port: 8200
+
+additional_repos_supplemental:
+  backports:
+    repo: deb http://deb.debian.org/debian buster-backports main
+    state: present
+
+additional_packages_supplemental:
+  snapd: latest
+
+additional_repo_keys_supplemental:
+  docker:
+    key_id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+    keyserver: https://download.docker.com/linux/debian/gpg
+    state: present
+  debian_archive_stretch:
+    key_id: E0B11894F66AEC98
+    keyserver: keyserver.ubuntu.com
+    state: present
+  debian_archive_buster:
+    key_id: DC30D7C23CBBABEE
+    keyserver: keyserver.ubuntu.com
+    state: present
+
+additional_packages_apt_supplemental:
+  openssh-client:
+    release: buster-backports
+  openssh-sftp-server:
+    release: buster-backports
+  openssh-server:
+    release: buster-backports
+
+additional_snaps_supplemental:
+  core: {}
+  certbot:
+    classic: true
+  certbot-dns-cloudflare:
+
+vault:
+  url: https://releases.hashicorp.com/vault/1.7.2/vault_1.7.2_linux_arm.zip
+  checksum: sha256:38782995fecb298f4a6c55e5568a7ea54a8516a7ea4ebaf25bb7caf0f6111c4a
+  config:
+    tcp_cert: /etc/letsencrypt/live/vault.services.lanbeforeti.me/fullchain.pem
+    tcp_key: /etc/letsencrypt/live/vault.services.lanbeforeti.me/privkey.pem
+
+certbot:
+  cloudflare_api_token: !vault |
+    $ANSIBLE_VAULT;1.1;AES256
+    63373966386437616161343365663161656532383364323033653230363633313936383134353534
+    3931323632646633333234393831353732623266346638620a313638373362353966643631623736
+    35393538383766663135626564643536353632366439636630373838626264303465353836343163
+    3938393333636332660a363637393465666231373161626266303634316630333864393562373963
+    64636333363137623032313730316539366166613135306665316637386564333838326465313237
+    6565613136643161613566653837666434366663643632633364

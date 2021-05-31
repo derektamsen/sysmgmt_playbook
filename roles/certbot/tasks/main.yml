@@ -1,0 +1,25 @@
+---
+# tasks file for certbot
+
+- name: Link certbot to /usr/bin/certbot
+  file:
+    src: /snap/bin/certbot
+    dest: /usr/local/bin/certbot
+    state: link
+
+- name: Create /etc/letsencrypt
+  file:
+    path: /etc/letsencrypt
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  register: cloudflare_etc_dir
+
+- name: Template certbot cloudflare config
+  template:
+    src: '{{ role_path }}/templates/cloudflare.ini.j2'
+    dest: '{{ cloudflare_etc_dir.path }}/cloudflare.ini'
+    owner: root
+    group: root
+    mode: 0600

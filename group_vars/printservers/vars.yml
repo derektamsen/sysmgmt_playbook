@@ -6,7 +6,7 @@ base_packages_supplemental:
 
 ufw_state: enabled
 
-ufw_rules_allow:
+ufw_rules_named:
   - name: Bonjour
   - name: IPP
   - name: OpenSSH

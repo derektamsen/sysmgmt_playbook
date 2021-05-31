@@ -4,6 +4,9 @@ derek-t460
 [nomadhosts]
 server01
 
+[vaulthosts]
+vault
+
 [desktops]
 desktop
 

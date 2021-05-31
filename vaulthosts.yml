@@ -1,0 +1,11 @@
+---
+- name: systems for running vault server
+  hosts:
+    - vaulthosts
+  become: true
+
+  roles:
+    - base
+    - sshserver
+    - certbot
+    - vault
