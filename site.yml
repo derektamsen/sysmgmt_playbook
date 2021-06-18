@@ -4,5 +4,5 @@
 - import_playbook: laptops.yml
 - import_playbook: printservers.yml
 - import_playbook: workstations.yml
-- import_playbook: nomadhosts.yml
+- import_playbook: k8shosts.yml
 - import_playbook: vaulthosts.yml
