@@ -1,11 +1,8 @@
 [laptops]
 derek-t460
 
-[nomadhosts]
+[k8shosts]
 server01
-
-[vaulthosts]
-vault.services.lanbeforeti.me
 
 [desktops]
 desktop

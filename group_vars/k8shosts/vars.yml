@@ -1,0 +1,26 @@
+---
+# Variables listed here are applicable to the docker host group
+base_packages_supplemental:
+  debian-keyring:
+  debian-archive-keyring:
+
+ufw_state: enabled
+
+ufw_rules_named:
+  - name: OpenSSH
+
+additional_repo_keys_supplemental:
+  debian_archive_stretch:
+    key_id: E0B11894F66AEC98
+    keyserver: keyserver.ubuntu.com
+  debian_archive_buster:
+    key_id: DC30D7C23CBBABEE
+    keyserver: keyserver.ubuntu.com
+
+additional_packages_apt_supplemental:
+  openssh-client:
+    release: buster-backports
+  openssh-sftp-server:
+    release: buster-backports
+  openssh-server:
+    release: buster-backports

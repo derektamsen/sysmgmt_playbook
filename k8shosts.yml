@@ -1,0 +1,9 @@
+---
+- name: systems running microk8s
+  hosts:
+    - k8shosts
+  become: true
+
+  roles:
+    - base
+    - sshserver
